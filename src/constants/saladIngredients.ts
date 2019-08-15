@@ -19,7 +19,7 @@ export default {
   veggies: [
     'beet',
     'carrot',
-    'tomatoe',
+    'tomato',
     'avocado',
     'bell pepper',
     'celery',

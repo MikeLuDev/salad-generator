@@ -1,13 +1,22 @@
 import React from 'react';
-
-import './App.css';
+import styled from 'styled-components';
 
 import Header from './components/Header';
+import Spinner from './components/Spinner';
 
 const App: React.FC = () => (
-  <div className="App">
+  <StyledApp className="App">
     <Header />
-  </div>
+    <Spinner />
+  </StyledApp>
 );
+
+const StyledApp = styled.div`
+  height: 100vh;
+  text-align: center;
+  * {
+    box-sizing: border-box;
+  }
+`;
 
 export default App;
