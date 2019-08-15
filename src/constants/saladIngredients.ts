@@ -6,6 +6,7 @@ export default {
     'iceburg lettuce',
     'arugula',
     'spinach',
+    'cabbage'
   ],
 
   grains: [
@@ -14,6 +15,7 @@ export default {
     'farro',
     'barley',
     'lentil',
+    'pasta',
   ],
 
   veggies: [
@@ -27,11 +29,16 @@ export default {
     'onion',
     'squash',
     'cucumber',
+    'broccoli',
+    'cauliflower',
   ],
 
   fruits: [
     'apple',
     'orange',
+    'cherries',
+    'pears',
+    'peaches',
   ],
 
   proteins: [
@@ -40,6 +47,8 @@ export default {
     'ham',
     'egg',
     'tofu',
+    'shrimp',
+    'tuna',
   ],
 
   cheeses: [
@@ -47,6 +56,8 @@ export default {
     'cheddar',
     'swiss',
     'goat',
+    'feta',
+    'bleu',
   ],
 
   garnishes: [
