@@ -13,8 +13,6 @@ const pickRandomIngredients = (ingredients: string[], count: number) => {
     let randomInt = getRandomInt(ingredients.length);
     while (pickedIndexes.includes(randomInt)) randomInt = getRandomInt(ingredients.length);
 
-    console.log(randomInt);
-
     pickedIndexes.push(randomInt);
     pickedIngredients[i] = ingredients[randomInt];
   }
