@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-// import styled from 'styled-components';
+
+import Button from '@material-ui/core/Button';
+import { Typography } from '@material-ui/core';
 
 import spinSalad from '../scripts/spinSalad';
 
@@ -25,9 +27,9 @@ const Spinner: React.FC = () => {
     <div>
       {salad ? 
         (<section>
-          <p>
+          <Typography variant="body1">
             {`Greens: ${salad.chosenGreens[0]}`}
-          </p>
+          </Typography>
           <p>
             {`Grain: ${salad.chosenGrains[0]}`}
           </p>
@@ -47,9 +49,9 @@ const Spinner: React.FC = () => {
             {`Garnish: ${salad.chosenGarnishes[0]}`}
           </p>
         </section>) : 
-        (<p>Hit the button below to generate a salad!</p>)
+        (<Typography variant="body1">Hit the button below to generate a salad!</Typography>)
       }
-      <button onClick={getSalad}>New Salad</button>
+      <Button onClick={getSalad} color="primary" variant="contained">New Salad</Button>
     </div>
   );
 };

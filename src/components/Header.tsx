@@ -1,16 +1,15 @@
 import React from 'react';
-import styled from 'styled-components';
+import { AppBar, Typography, Toolbar } from '@material-ui/core';
+
 
 const Header: React.FC = () => (
-  <StyledHeader>
-    SALAD-A-TRON 5000
-  </StyledHeader>
+  <AppBar color="primary" position="static">
+    <Toolbar>
+      <Typography variant="h6">
+        Salad Generator
+      </Typography>
+    </Toolbar>
+  </AppBar>
 );
-
-const StyledHeader = styled.header`
-  background: green;
-  padding: 16px 0;
-  color: white;
-`;
 
 export default Header;

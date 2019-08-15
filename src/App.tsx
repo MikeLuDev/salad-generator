@@ -1,22 +1,27 @@
 import React from 'react';
-import styled from 'styled-components';
+
+import { ThemeProvider } from '@material-ui/styles';
+import { createMuiTheme, Container } from '@material-ui/core';
+import { green } from '@material-ui/core/colors';
 
 import Header from './components/Header';
 import Spinner from './components/Spinner';
 
-const App: React.FC = () => (
-  <StyledApp className="App">
-    <Header />
-    <Spinner />
-  </StyledApp>
-);
+const theme = createMuiTheme({
+  palette: {
+    secondary: {
+      main: green[500],
+    },
+  },
+});
 
-const StyledApp = styled.div`
-  height: 100vh;
-  text-align: center;
-  * {
-    box-sizing: border-box;
-  }
-`;
+const App: React.FC = () => (
+  <ThemeProvider theme={theme}>
+    <Header />
+    <Container maxWidth="md">
+      <Spinner />
+    </Container>
+  </ThemeProvider>
+);
 
 export default App;
