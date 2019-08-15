@@ -13,6 +13,7 @@ const theme = createMuiTheme({
       main: green[600],
     },
   },
+  spacing: 8,
 });
 
 const useStyles = makeStyles({

@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
 
 import Button from '@material-ui/core/Button';
-import { Box, Typography, Paper, Table, TableHead, TableRow, TableCell, TableBody } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
+import { Box, Typography, Paper, Table, TableHead, TableRow, TableCell, TableBody, Theme } from '@material-ui/core';
+import { makeStyles, createStyles } from '@material-ui/styles';
 
 import spinSalad from '../js/spinSalad';
+import SettingsDrawer from './SettingsDrawer';
 
-const useStyles = makeStyles({
-  table: {
-    marginBottom: '16px',
-  },
-});
+const useStyles = makeStyles((theme: Theme) => 
+  createStyles({
+    table: {
+      marginBottom: '16px',
+    },
+    button: {
+      margin: theme.spacing(1),
+    }
+  })
+);
 
 const Spinner: React.FC = () => {
   const classes = useStyles();
@@ -22,7 +28,7 @@ const Spinner: React.FC = () => {
   };
 
   return (
-    <Box display="flex" flexDirection="column">
+    <Box textAlign="center">
       { !salad && <Typography className={classes.table} variant="body1">Hit the button below to generate a salad!</Typography> }
       { salad && 
         <Paper className={classes.table}>
@@ -97,7 +103,9 @@ const Spinner: React.FC = () => {
             </TableBody>
           </Table>
       </Paper> }
-      <Button onClick={getSalad} color="primary" variant="contained">New Salad</Button>
+
+      <SettingsDrawer />
+      <Button className={classes.button} onClick={getSalad} color="primary" variant="contained">New Salad</Button>
     </Box>
   );
 };
