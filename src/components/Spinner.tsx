@@ -1,22 +1,20 @@
 import React, { useState } from 'react';
 
 import Button from '@material-ui/core/Button';
-import { Typography } from '@material-ui/core';
+import { Box, Typography, Paper, Table, TableHead, TableRow, TableCell, TableBody } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 
-import spinSalad from '../scripts/spinSalad';
+import spinSalad from '../js/spinSalad';
 
-type Salad = {
-  chosenGreens: string[],
-  chosenGrains: string[],
-  chosenVeggies: string[],
-  chosenFruits: string[],
-  chosenProteins: string[],
-  chosenCheeses: string[],
-  chosenGarnishes: string[]
-};
+const useStyles = makeStyles({
+  table: {
+    marginBottom: '16px',
+  },
+});
 
 const Spinner: React.FC = () => {
-  const [salad, setSalad] = useState<Salad | null>(null);
+  const classes = useStyles();
+  const [salad, setSalad] = useState<ISalad | null>(null);
   
   const getSalad = () => {
     const newSalad = spinSalad();
@@ -24,35 +22,83 @@ const Spinner: React.FC = () => {
   };
 
   return (
-    <div>
-      {salad ? 
-        (<section>
-          <Typography variant="body1">
-            {`Greens: ${salad.chosenGreens[0]}`}
-          </Typography>
-          <p>
-            {`Grain: ${salad.chosenGrains[0]}`}
-          </p>
-          <p>
-            {`Veggies: ${salad.chosenVeggies.map(veggie => ` ${veggie}`)}`}
-          </p>
-          <p>
-            {`Fruit: ${salad.chosenFruits[0]}`}
-          </p>
-          <p>
-            {`Protein: ${salad.chosenProteins[0]}`}
-          </p>
-          <p>
-            {`Cheese: ${salad.chosenCheeses[0]}`}
-          </p>
-          <p>
-            {`Garnish: ${salad.chosenGarnishes[0]}`}
-          </p>
-        </section>) : 
-        (<Typography variant="body1">Hit the button below to generate a salad!</Typography>)
-      }
+    <Box display="flex" flexDirection="column">
+      { !salad && <Typography className={classes.table} variant="body1">Hit the button below to generate a salad!</Typography> }
+      { salad && 
+        <Paper className={classes.table}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>
+                  Category
+                </TableCell>
+                <TableCell>
+                  Ingredients
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <TableRow>
+                <TableCell>
+                  Greens
+                </TableCell>
+                <TableCell>
+                  {salad.chosenGreens[0]}
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>
+                  Grains
+                </TableCell>
+                <TableCell>
+                  {salad.chosenGrains[0]}
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>
+                  Veggies
+                </TableCell>
+                <TableCell>
+                  {salad.chosenVeggies.map(veggie => `${veggie} `)}
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>
+                  Fruits
+                </TableCell>
+                <TableCell>
+                  {salad.chosenFruits[0]}
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>
+                  Protein
+                </TableCell>
+                <TableCell>
+                  {salad.chosenProteins[0]}
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>
+                  Cheese
+                </TableCell>
+                <TableCell>
+                  {salad.chosenCheeses[0]}
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>
+                  Garnish
+                </TableCell>
+                <TableCell>
+                  {salad.chosenGarnishes[0]}
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+      </Paper> }
       <Button onClick={getSalad} color="primary" variant="contained">New Salad</Button>
-    </div>
+    </Box>
   );
 };
 

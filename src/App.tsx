@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ThemeProvider } from '@material-ui/styles';
+import { ThemeProvider, makeStyles } from '@material-ui/styles';
 import { createMuiTheme, Container } from '@material-ui/core';
 import { green } from '@material-ui/core/colors';
 
@@ -9,19 +9,30 @@ import Spinner from './components/Spinner';
 
 const theme = createMuiTheme({
   palette: {
-    secondary: {
-      main: green[500],
+    primary: {
+      main: green[600],
     },
   },
 });
 
-const App: React.FC = () => (
-  <ThemeProvider theme={theme}>
-    <Header />
-    <Container maxWidth="md">
-      <Spinner />
-    </Container>
-  </ThemeProvider>
-);
+const useStyles = makeStyles({
+  root: {
+    padding: '16px',
+  },
+});
+
+const App: React.FC = () => {
+  const classes = useStyles();
+
+  return (
+    <ThemeProvider theme={theme}>
+      <Header />
+      <Container className={classes.root}  maxWidth="md">
+        <Spinner />
+      </Container>
+    </ThemeProvider>
+
+  );
+};
 
 export default App;
