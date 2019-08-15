@@ -4,20 +4,19 @@ import util from './util';
 const { getRandomInt } = util;
 
 const pickRandomIngredients = (ingredients: string[], count: number) => {
+  if (count > ingredients.length) return ingredients;
+
+  const pickedIndexes: number[] = [];
   const pickedIngredients: string[] = [];
 
-  const pickNewIngredient = () => {
-    let ingredient =  ingredients[getRandomInt(ingredients.length)];
-
-    if (pickedIngredients.includes(ingredient)) {
-      pickNewIngredient();
-    }
-
-    return ingredient;
-  };
-
   for (let i = 0; i < count; i += 1) {
-    pickedIngredients[i] = pickNewIngredient();
+    let randomInt = getRandomInt(ingredients.length);
+    while (pickedIndexes.includes(randomInt)) randomInt = getRandomInt(ingredients.length);
+
+    console.log(randomInt);
+
+    pickedIndexes.push(randomInt);
+    pickedIngredients[i] = ingredients[randomInt];
   }
 
   return pickedIngredients;
@@ -33,8 +32,6 @@ export default () => {
   const chosenProteins = pickRandomIngredients(proteins, 1);
   const chosenCheeses = pickRandomIngredients(cheeses, 1);
   const chosenGarnishes = pickRandomIngredients(garnishes, 1);
-
-  console.log(chosenGreens);
 
   return {
     chosenGreens,
