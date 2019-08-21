@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
     button: {
       margin: theme.spacing(1),
     },
-    leftIcon: {
+    iconLeft: {
       marginRight: theme.spacing(1),
     },
   }),
@@ -51,12 +51,12 @@ const Spinner: React.FC = () => {
         color="primary"
         variant="contained"
       >
-        <RefreshIcon className={classes.leftIcon} />
+        <RefreshIcon className={classes.iconLeft} />
         New Salad
       </Button>
       {!salad && (
         <Typography className={classes.table} variant="body1">
-          Go ahead, make a salad!
+          Hit the button above to start making salads!
         </Typography>
       )}
       {salad && (
