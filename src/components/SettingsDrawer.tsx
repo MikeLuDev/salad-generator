@@ -1,56 +1,23 @@
-import React, { Fragment } from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { ListSubheader, List, Drawer, Button } from '@material-ui/core';
+import React from 'react';
+import { makeStyles, Theme, createStyles, ListSubheader, List, } from '@material-ui/core';
+import ReusableDrawer from './ReusableDrawer';
 import ListItemSwitch from './ListItemSwitch';
 import saladIngredients from '../constants/saladIngredients';
 import SettingsIcon from '@material-ui/icons/Settings';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    list: {
-      width: 250,
-    },
-    fullList: {
-      width: 'auto',
-    },
-    button: {
-      margin: theme.spacing(1),
-    },
-    listHeading: {
-      marginLeft: theme.spacing(2),
-      marginTop: theme.spacing(2),
-    },
-    iconLeft: {
-      marginRight: theme.spacing(1),
-    },
-  }),
-);
+const useStyles = makeStyles((theme: Theme) => createStyles({
+  list: {
+    width: 250,
+  },
+  iconLeft: {
+    marginRight: theme.spacing(1),
+  },
+}));
 
-const SettingsDrawer = () => {
+const ToggleIngredients: React.FC = () => {
   const classes = useStyles();
-  const [state, setState] = React.useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
-  });
 
-  type DrawerSide = 'top' | 'left' | 'bottom' | 'right';
-  const toggleDrawer = (side: DrawerSide, open: boolean) => (
-    event: React.KeyboardEvent | React.MouseEvent,
-  ) => {
-    if (
-      event.type === 'keydown' &&
-      ((event as React.KeyboardEvent).key === 'Tab' ||
-        (event as React.KeyboardEvent).key === 'Shift')
-    )
-      return;
-
-    setState({ ...state, [side]: open });
-  };
-
-  /** @todo Extract this and allow it to be populated as a child */
-  const ingredientsToggleList = (side: DrawerSide) => (
+  return (
     <div className={classes.list} role="presentation">
       <List subheader={<ListSubheader>Salad Settings</ListSubheader>}>
         {Object.keys(saladIngredients).map((ingredient) => (
@@ -59,22 +26,15 @@ const SettingsDrawer = () => {
       </List>
     </div>
   );
+};
+
+const SettingsDrawer: React.FC = () => {
+  const classes = useStyles();
 
   return (
-    <Fragment>
-      <Button
-        className={classes.button}
-        color="secondary"
-        variant="contained"
-        onClick={toggleDrawer('left', true)}
-      >
-        <SettingsIcon className={classes.iconLeft} />
-        Settings
-      </Button>
-      <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
-        {ingredientsToggleList('left')}
-      </Drawer>
-    </Fragment>
+    <ReusableDrawer icon={<SettingsIcon className={classes.iconLeft} />} label="Settings">
+      <ToggleIngredients />
+    </ReusableDrawer>
   );
 };
 
