@@ -11,7 +11,8 @@ const pickRandomIngredients = (ingredients: string[], count: number) => {
 
   for (let i = 0; i < count; i += 1) {
     let randomInt = getRandomInt(ingredients.length);
-    while (pickedIndexes.includes(randomInt)) randomInt = getRandomInt(ingredients.length);
+    while (pickedIndexes.includes(randomInt))
+      randomInt = getRandomInt(ingredients.length);
 
     pickedIndexes.push(randomInt);
     pickedIngredients[i] = ingredients[randomInt];
@@ -21,7 +22,15 @@ const pickRandomIngredients = (ingredients: string[], count: number) => {
 };
 
 export default () => {
-  const { greens, grains, veggies, fruits, proteins, cheeses, garnishes } = saladIngredients;
+  const {
+    greens,
+    grains,
+    veggies,
+    fruits,
+    proteins,
+    cheeses,
+    garnishes,
+  } = saladIngredients;
 
   const chosenGreens = pickRandomIngredients(greens, 1);
   const chosenGrains = pickRandomIngredients(grains, 1);
@@ -38,6 +47,6 @@ export default () => {
     chosenFruits,
     chosenProteins,
     chosenCheeses,
-    chosenGarnishes
+    chosenGarnishes,
   };
 };

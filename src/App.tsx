@@ -28,11 +28,10 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <Header />
-      <Container className={classes.root}  maxWidth="md">
+      <Container className={classes.root} maxWidth="md">
         <Spinner />
       </Container>
     </ThemeProvider>
-
   );
 };
 

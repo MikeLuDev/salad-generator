@@ -1,15 +1,11 @@
 import React, { Fragment } from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import {
-  ListSubheader,
-  List,
-  Drawer,
-  Button,
-} from '@material-ui/core';
+import { ListSubheader, List, Drawer, Button } from '@material-ui/core';
 import ListItemSwitch from './ListItemSwitch';
 import saladIngredients from '../constants/saladIngredients';
+import SettingsIcon from '@material-ui/icons/Settings';
 
-const useStyles = makeStyles((theme: Theme) => 
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     list: {
       width: 250,
@@ -23,8 +19,11 @@ const useStyles = makeStyles((theme: Theme) =>
     listHeading: {
       marginLeft: theme.spacing(2),
       marginTop: theme.spacing(2),
-    }
-  })
+    },
+    iconLeft: {
+      marginRight: theme.spacing(1),
+    },
+  }),
 );
 
 const SettingsDrawer = () => {
@@ -44,19 +43,17 @@ const SettingsDrawer = () => {
       event.type === 'keydown' &&
       ((event as React.KeyboardEvent).key === 'Tab' ||
         (event as React.KeyboardEvent).key === 'Shift')
-    ) return;
+    )
+      return;
 
     setState({ ...state, [side]: open });
   };
 
   /** @todo Extract this and allow it to be populated as a child */
   const ingredientsToggleList = (side: DrawerSide) => (
-    <div
-      className={classes.list}
-      role="presentation"
-    >
+    <div className={classes.list} role="presentation">
       <List subheader={<ListSubheader>Salad Settings</ListSubheader>}>
-        {Object.keys(saladIngredients).map(ingredient => (
+        {Object.keys(saladIngredients).map((ingredient) => (
           <ListItemSwitch>{ingredient}</ListItemSwitch>
         ))}
       </List>
@@ -71,7 +68,7 @@ const SettingsDrawer = () => {
         variant="contained"
         onClick={toggleDrawer('left', true)}
       >
-        { /** @todo Allow for this to be an svg */}
+        <SettingsIcon className={classes.iconLeft} />
         Settings
       </Button>
       <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
@@ -79,6 +76,6 @@ const SettingsDrawer = () => {
       </Drawer>
     </Fragment>
   );
-}
+};
 
 export default SettingsDrawer;

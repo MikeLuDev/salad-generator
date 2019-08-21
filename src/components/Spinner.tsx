@@ -1,27 +1,42 @@
 import React, { useState } from 'react';
 
 import Button from '@material-ui/core/Button';
-import { Box, Typography, Paper, Table, TableHead, TableRow, TableCell, TableBody, Theme } from '@material-ui/core';
+import {
+  Box,
+  Typography,
+  Paper,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+  Theme,
+} from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/styles';
+import RefreshIcon from '@material-ui/icons/Refresh';
 
 import spinSalad from '../js/spinSalad';
 import SettingsDrawer from './SettingsDrawer';
 
-const useStyles = makeStyles((theme: Theme) => 
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     table: {
-      marginBottom: '16px',
+      marginBottom: theme.spacing(2),
+      marginTop: theme.spacing(2),
     },
     button: {
       margin: theme.spacing(1),
-    }
-  })
+    },
+    leftIcon: {
+      marginRight: theme.spacing(1),
+    },
+  }),
 );
 
 const Spinner: React.FC = () => {
   const classes = useStyles();
   const [salad, setSalad] = useState<ISalad | null>(null);
-  
+
   const getSalad = () => {
     const newSalad = spinSalad();
     setSalad(newSalad);
@@ -29,83 +44,65 @@ const Spinner: React.FC = () => {
 
   return (
     <Box textAlign="center">
-      { !salad && <Typography className={classes.table} variant="body1">Hit the button below to generate a salad!</Typography> }
-      { salad && 
+      <SettingsDrawer />
+      <Button
+        className={classes.button}
+        onClick={getSalad}
+        color="primary"
+        variant="contained"
+      >
+        <RefreshIcon className={classes.leftIcon} />
+        New Salad
+      </Button>
+      {!salad && (
+        <Typography className={classes.table} variant="body1">
+          Go ahead, make a salad!
+        </Typography>
+      )}
+      {salad && (
         <Paper className={classes.table}>
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>
-                  Category
-                </TableCell>
-                <TableCell>
-                  Ingredients
-                </TableCell>
+                <TableCell>Category</TableCell>
+                <TableCell>Ingredients</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               <TableRow>
+                <TableCell>Greens</TableCell>
+                <TableCell>{salad.chosenGreens[0]}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Grains</TableCell>
+                <TableCell>{salad.chosenGrains[0]}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Veggies</TableCell>
                 <TableCell>
-                  Greens
-                </TableCell>
-                <TableCell>
-                  {salad.chosenGreens[0]}
+                  {salad.chosenVeggies.map((veggie) => `${veggie} `)}
                 </TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>
-                  Grains
-                </TableCell>
-                <TableCell>
-                  {salad.chosenGrains[0]}
-                </TableCell>
+                <TableCell>Fruits</TableCell>
+                <TableCell>{salad.chosenFruits[0]}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>
-                  Veggies
-                </TableCell>
-                <TableCell>
-                  {salad.chosenVeggies.map(veggie => `${veggie} `)}
-                </TableCell>
+                <TableCell>Protein</TableCell>
+                <TableCell>{salad.chosenProteins[0]}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>
-                  Fruits
-                </TableCell>
-                <TableCell>
-                  {salad.chosenFruits[0]}
-                </TableCell>
+                <TableCell>Cheese</TableCell>
+                <TableCell>{salad.chosenCheeses[0]}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>
-                  Protein
-                </TableCell>
-                <TableCell>
-                  {salad.chosenProteins[0]}
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>
-                  Cheese
-                </TableCell>
-                <TableCell>
-                  {salad.chosenCheeses[0]}
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>
-                  Garnish
-                </TableCell>
-                <TableCell>
-                  {salad.chosenGarnishes[0]}
-                </TableCell>
+                <TableCell>Garnish</TableCell>
+                <TableCell>{salad.chosenGarnishes[0]}</TableCell>
               </TableRow>
             </TableBody>
           </Table>
-      </Paper> }
-
-      <SettingsDrawer />
-      <Button className={classes.button} onClick={getSalad} color="primary" variant="contained">New Salad</Button>
+        </Paper>
+      )}
     </Box>
   );
 };

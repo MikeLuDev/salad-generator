@@ -6,17 +6,10 @@ export default {
     'iceburg lettuce',
     'arugula',
     'spinach',
-    'cabbage'
+    'cabbage',
   ],
 
-  grains: [
-    'quinoa',
-    'rice',
-    'farro',
-    'barley',
-    'lentil',
-    'pasta',
-  ],
+  grains: ['quinoa', 'rice', 'farro', 'barley', 'lentil', 'pasta'],
 
   veggies: [
     'beet',
@@ -33,32 +26,11 @@ export default {
     'cauliflower',
   ],
 
-  fruits: [
-    'apple',
-    'orange',
-    'cherries',
-    'pears',
-    'peaches',
-  ],
+  fruits: ['apple', 'orange', 'cherries', 'pears', 'peaches'],
 
-  proteins: [
-    'chicken',
-    'steak',
-    'ham',
-    'egg',
-    'tofu',
-    'shrimp',
-    'tuna',
-  ],
+  proteins: ['chicken', 'steak', 'ham', 'egg', 'tofu', 'shrimp', 'tuna'],
 
-  cheeses: [
-    'parmesan',
-    'cheddar',
-    'swiss',
-    'goat',
-    'feta',
-    'bleu',
-  ],
+  cheeses: ['parmesan', 'cheddar', 'swiss', 'goat', 'feta', 'bleu'],
 
   garnishes: [
     'almond',
