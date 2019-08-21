@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { ListItem, ListItemText, ListItemSecondaryAction, Switch } from '@material-ui/core';
 import util from '../js/util';
 
