@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   makeStyles,
   Theme,
@@ -10,6 +10,7 @@ import ReusableDrawer from './ReusableDrawer';
 import ListItemSwitch from './ListItemSwitch';
 import saladIngredients from '../constants/saladIngredients';
 import SettingsIcon from '@material-ui/icons/Settings';
+import settings from '../js/settings';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -22,30 +23,29 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const ToggleIngredients: React.FC = () => {
-  const classes = useStyles();
-
-  return (
-    <List
-      className={classes.list}
-      subheader={<ListSubheader>Salad Settings</ListSubheader>}
-    >
-      {Object.keys(saladIngredients).map((ingredient) => (
-        <ListItemSwitch>{ingredient}</ListItemSwitch>
-      ))}
-    </List>
-  );
-};
-
 const SettingsDrawer: React.FC = () => {
   const classes = useStyles();
+  const [saladSettings, setSaladSettings] = useState(null);
+
+  useEffect(() => {
+    /* settings.getSettings().then((response) => {
+      setSaladSettings(response);
+    }); */
+  });
 
   return (
     <ReusableDrawer
       icon={<SettingsIcon className={classes.iconLeft} />}
       label="Settings"
     >
-      <ToggleIngredients />
+      <List
+        className={classes.list}
+        subheader={<ListSubheader>Salad Settings</ListSubheader>}
+      >
+        {Object.keys(saladIngredients).map((ingredient) => (
+          <ListItemSwitch>{ingredient}</ListItemSwitch>
+        ))}
+      </List>
     </ReusableDrawer>
   );
 };

@@ -12,33 +12,37 @@ const SETTINGS_OBJECT_STORE = 'settings';
 let db;
 
 const indexedDatabase = () => {
-  if (!window.indexedDB) {
-    console.log(`Your browser doesn't support a stable version of IndexedDB. 
-      Salad settings filters will not be enabled.`);
-
-    return;
-  };
-
-  const databaseRequest = indexedDB.open(DB_NAME, DB_VERSION);
-
-  databaseRequest.onerror = (event) => {
-    console.log('There was an error opening the database', event);
-  };
-
-  databaseRequest.onupgradeneeded = (event) => {
-    db = event.target.result;
-
-    return db.createObjectStore(SETTINGS_OBJECT_STORE, { autoIncrement: true });
-  };
-
-  databaseRequest.onsuccess = async (event) => {
-    db = event.target.result;
-
-    const userSettings = dbRequest.getAll(SETTINGS_OBJECT_STORE);
-    userSettings.onsuccess = () => {
-      if (!userSettings.result.length) return dbRequest.add(SETTINGS_OBJECT_STORE, defaultSettings);
+  return new Promise((resolve, reject) => {
+    if (!window.indexedDB) {
+      console.log(`Your browser doesn't support a stable version of IndexedDB. 
+        Salad settings filters will not be enabled.`);
+  
+      return;
     };
-  };
+  
+    const databaseRequest = indexedDB.open(DB_NAME, DB_VERSION);
+  
+    databaseRequest.onerror = (event) => {
+      console.log('There was an error opening the database', event);
+    };
+  
+    databaseRequest.onupgradeneeded = (event) => {
+      db = event.target.result;
+  
+      return db.createObjectStore(SETTINGS_OBJECT_STORE, { autoIncrement: true });
+    };
+  
+    databaseRequest.onsuccess = async (event) => {
+      db = event.target.result;
+  
+      const userSettings = dbRequest.getAll(SETTINGS_OBJECT_STORE);
+      userSettings.onsuccess = () => {
+        if (!userSettings.result.length) return dbRequest.add(SETTINGS_OBJECT_STORE, defaultSettings);
+      };
+
+      resolve(db);
+    };
+  });
 };
 
 const dbRequest = {
@@ -53,4 +57,4 @@ const dbRequest = {
   update: (store, key, data) => dbRequest.getObjectStore(store).put(data),
 };
 
-export { indexedDatabase as default, dbRequest};
+export { indexedDatabase as default, dbRequest, SETTINGS_OBJECT_STORE};
