@@ -1,42 +1,56 @@
+/**
+ * Not using typescript here because it's broken when evaluating event.target.result
+ * @see https://github.com/Microsoft/TypeScript/issues/28293
+ * Maybe fix this myself?
+ */
+
 import defaultSettings from '../constants/defaultSettings';
 
-const indexedDatabase = async () => {
-  const DB_VERSION = 3;
-  const DB_NAME = 'saladAppDatabase';
+const DB_VERSION = 3;
+const DB_NAME = 'saladAppDatabase';
+const SETTINGS_OBJECT_STORE = 'settings';
+let db;
 
-  let request = indexedDB.open(DB_NAME, DB_VERSION);
+const indexedDatabase = () => {
+  if (!window.indexedDB) {
+    console.log(`Your browser doesn't support a stable version of IndexedDB. 
+      Salad settings filters will not be enabled.`);
 
-  request.onerror = (event) => {
+    return;
+  };
+
+  const databaseRequest = indexedDB.open(DB_NAME, DB_VERSION);
+
+  databaseRequest.onerror = (event) => {
     console.log('There was an error opening the database', event);
   };
 
-  request.onupgradeneeded = (event) => {
-    const db = event.target.result;
-    db.deleteObjectStore('settings');
-    return db.createObjectStore('settings', { autoIncrement: true });
+  databaseRequest.onupgradeneeded = (event) => {
+    db = event.target.result;
+
+    return db.createObjectStore(SETTINGS_OBJECT_STORE, { autoIncrement: true });
   };
 
-  request.onsuccess = async (event) => {
-    const db = event.target.result;
+  databaseRequest.onsuccess = async (event) => {
+    db = event.target.result;
 
-    const userSettingsRequest = getUserSettings(db);
-    userSettingsRequest.onsuccess = () => {
-      if (!userSettingsRequest.result.length) return initialUserSettings(db);
-    }
+    const userSettings = dbRequest.getAll(SETTINGS_OBJECT_STORE);
+    userSettings.onsuccess = () => {
+      if (!userSettings.result.length) return dbRequest.add(SETTINGS_OBJECT_STORE, defaultSettings);
+    };
   };
+};
 
-  const getUserSettings = (db) => {
-    const transaction = db.transaction('settings');
-    const objectStore = transaction.objectStore('settings');
-    return objectStore.getAll();
-  }
+const dbRequest = {
+  getObjectStore: (store, mode = 'readonly') => db.transaction(store, mode).objectStore(store),
+  
+  get: (store, key) => dbRequest.getObjectStore(store).get(key),
 
-  const initialUserSettings = (db) => {
-    const transaction = db.transaction('settings', 'readwrite');
-    const store = transaction.objectStore('settings');
+  getAll: (store, key = null) => dbRequest.getObjectStore(store).getAll(key),
 
-    store.add(defaultSettings);
-  };
-}
+  add: (store, data) => dbRequest.getObjectStore(store, 'readwrite').add(data),
 
-export default indexedDatabase;
+  update: (store, key, data) => dbRequest.getObjectStore(store).put(data),
+};
+
+export { indexedDatabase as default, dbRequest};
