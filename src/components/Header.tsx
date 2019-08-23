@@ -6,6 +6,7 @@ import {
   IconButton,
   MenuItem,
   Menu,
+  Container,
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 
@@ -19,7 +20,10 @@ const Header: React.FC = () => {
   return (
     <AppBar color="primary" position="static">
       <Toolbar>
-        <IconButton
+        <Container style={{ textAlign: 'center' }} maxWidth="md">
+          <Typography variant="h6">Salad Generator</Typography>
+        </Container>
+        {/*  <IconButton
           edge="start"
           color="inherit"
           aria-label="menu"
@@ -37,8 +41,7 @@ const Header: React.FC = () => {
           <MenuItem onClick={handleClose}>Settings</MenuItem>
           <MenuItem onClick={handleClose}>Other Place</MenuItem>
           <MenuItem onClick={handleClose}>Somewhere Else</MenuItem>
-        </Menu>
-        <Typography variant="h6">Salad Generator</Typography>
+        </Menu> */}
       </Toolbar>
     </AppBar>
   );
