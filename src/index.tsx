@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { default as initDB } from './js/db.js';
+import { default as initDB } from './js/db';
 
 initDB().then(() => ReactDOM.render(<App />, document.getElementById('root')));
 

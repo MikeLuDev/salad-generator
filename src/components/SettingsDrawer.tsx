@@ -11,6 +11,7 @@ import ListItemSwitch from './ListItemSwitch';
 import saladIngredients from '../constants/saladIngredients';
 import SettingsIcon from '@material-ui/icons/Settings';
 import settings from '../js/settings';
+import defaultSettings from '../constants/defaultSettings';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -25,13 +26,16 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const SettingsDrawer: React.FC = () => {
   const classes = useStyles();
-  const [saladSettings, setSaladSettings] = useState(null);
 
+  const [saladSettings, setSaladSettings] = useState<IUserOptions>(
+    defaultSettings,
+  );
   useEffect(() => {
-    /* settings.getSettings().then((response) => {
-      setSaladSettings(response);
-    }); */
-  });
+    const getSaladSettings = () =>
+      settings.getSettings().then((response) => setSaladSettings(response));
+
+    getSaladSettings();
+  }, [saladSettings]);
 
   return (
     <ReusableDrawer
