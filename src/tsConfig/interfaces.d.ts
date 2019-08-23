@@ -1,3 +1,7 @@
+interface IIngredients {
+  [propName: string]: string[];
+}
+
 interface ISalad {
   chosenGreens: string[];
   chosenGrains: string[];

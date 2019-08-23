@@ -20,6 +20,7 @@ const ListItemSwitch: React.FC<Props> = ({ children, settings, onChange }) => {
       </ListItemText>
       <ListItemSecondaryAction>
         <Switch
+          size="small"
           onChange={onChange}
           value={children}
           color="primary"

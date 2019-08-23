@@ -1,21 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import {
   makeStyles,
   Theme,
   createStyles,
   ListSubheader,
   List,
+  Divider,
 } from '@material-ui/core';
 import ReusableDrawer from './ReusableDrawer';
 import SettingsSwitch from './SettingsSwitch';
 import SettingsIcon from '@material-ui/icons/Settings';
 import settings from '../js/settings';
 import defaultSettings from '../constants/defaultSettings';
+import SettingsSlider from './SettingsSlider';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     list: {
-      width: 250,
+      width: 300,
     },
     iconLeft: {
       marginRight: theme.spacing(1),
@@ -42,14 +44,23 @@ const SettingsDrawer: React.FC = () => {
     getSaladSettings();
   }, []);
 
-  const onChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onSwitchChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const { checked, value } = event.currentTarget;
-    const updatedSettings = JSON.parse(JSON.stringify(saladSettings));
+    const settingsCopy = JSON.parse(JSON.stringify(saladSettings));
 
-    updatedSettings[value].enabled = checked;
+    settingsCopy[value].enabled = checked;
 
-    setSaladSettings(updatedSettings);
-    saveSaladSettings(updatedSettings);
+    setSaladSettings(settingsCopy);
+    saveSaladSettings(settingsCopy);
+  };
+
+  const onSliderChange = async (type: string, value: number | number[]) => {
+    const settingsCopy = JSON.parse(JSON.stringify(saladSettings));
+
+    settingsCopy[type].amount = value;
+
+    setSaladSettings(settingsCopy);
+    saveSaladSettings(settingsCopy);
   };
 
   return (
@@ -61,15 +72,23 @@ const SettingsDrawer: React.FC = () => {
         className={classes.list}
         subheader={<ListSubheader>Salad Settings</ListSubheader>}
       >
+        <Divider />
         {saladSettings &&
           Object.keys(saladSettings).map((key) => (
-            <SettingsSwitch
-              key={key}
-              onChange={onChange}
-              settings={saladSettings[key]}
-            >
-              {key}
-            </SettingsSwitch>
+            <Fragment key={`settings-fragment-${key}`}>
+              <SettingsSwitch
+                onChange={onSwitchChange}
+                settings={saladSettings[key]}
+              >
+                {key}
+              </SettingsSwitch>
+              <SettingsSlider
+                onChange={onSliderChange}
+                type={key}
+                settings={saladSettings[key]}
+              />
+              <Divider />
+            </Fragment>
           ))}
       </List>
     </ReusableDrawer>

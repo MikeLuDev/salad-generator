@@ -1,4 +1,4 @@
-export default {
+const ingredients: IIngredients = {
   greens: [
     'bitter greens',
     'mixed greens',
@@ -44,3 +44,5 @@ export default {
     'peanut',
   ],
 };
+
+export default ingredients;

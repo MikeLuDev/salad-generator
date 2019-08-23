@@ -15,15 +15,15 @@ const settings = {
     enabled: true,
     amount: 1,
   },
-  protein: {
+  proteins: {
     enabled: true,
     amount: 1,
   },
-  cheese: {
+  cheeses: {
     enabled: true,
     amount: 1,
   },
-  garnish: {
+  garnishes: {
     enabled: true,
     amount: 1,
   },
