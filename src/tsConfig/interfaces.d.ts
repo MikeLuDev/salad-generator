@@ -8,33 +8,11 @@ interface ISalad {
   chosenGarnishes: string[];
 }
 
+interface ISingleOption {
+  enabled: boolean;
+  amount: number;
+}
+
 interface IUserOptions {
-  greens: {
-    enabled: bool;
-    amount: number;
-  };
-  grains: {
-    enabled: bool;
-    amount: number;
-  };
-  veggies: {
-    enabled: bool;
-    amount: number;
-  };
-  fruits: {
-    enabled: bool;
-    amount: number;
-  };
-  protein: {
-    enabled: bool;
-    amount: number;
-  };
-  cheese: {
-    enabled: bool;
-    amount: number;
-  };
-  garnish: {
-    enabled: bool;
-    amount: number;
-  };
+  [propName: string]: ISingleOption;
 }

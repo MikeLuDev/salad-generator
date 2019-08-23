@@ -52,16 +52,17 @@ const dbRequest = {
   getObjectStore: (store: string, mode: IDBTransactionMode = 'readonly') =>
     db.transaction(store, mode).objectStore(store),
 
-  get: (store: string, key: string) => dbRequest.getObjectStore(store).get(key),
+  get: (store: string, key: IDBValidKey) =>
+    dbRequest.getObjectStore(store).get(key),
 
-  getAll: (store: string, key = undefined) =>
+  getAll: (store: string, key: IDBValidKey | undefined = undefined) =>
     dbRequest.getObjectStore(store).getAll(key),
 
   add: (store: string, data: object) =>
     dbRequest.getObjectStore(store, 'readwrite').add(data),
 
-  update: (store: string, key: string, data: object) =>
-    dbRequest.getObjectStore(store).put(data),
+  update: (store: string, key: IDBValidKey, data: object) =>
+    dbRequest.getObjectStore(store, 'readwrite').put(data, key),
 };
 
 export { indexedDatabase as default, dbRequest, SETTINGS_OBJECT_STORE };

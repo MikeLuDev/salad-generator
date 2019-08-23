@@ -7,8 +7,7 @@ import {
   List,
 } from '@material-ui/core';
 import ReusableDrawer from './ReusableDrawer';
-import ListItemSwitch from './ListItemSwitch';
-import saladIngredients from '../constants/saladIngredients';
+import SettingsSwitch from './SettingsSwitch';
 import SettingsIcon from '@material-ui/icons/Settings';
 import settings from '../js/settings';
 import defaultSettings from '../constants/defaultSettings';
@@ -30,12 +29,28 @@ const SettingsDrawer: React.FC = () => {
   const [saladSettings, setSaladSettings] = useState<IUserOptions>(
     defaultSettings,
   );
-  useEffect(() => {
-    const getSaladSettings = () =>
-      settings.getSettings().then((response) => setSaladSettings(response));
 
+  const getSaladSettings = () =>
+    settings.getSettings().then((response) => {
+      setSaladSettings(response);
+    });
+
+  const saveSaladSettings = (data: IUserOptions = saladSettings) =>
+    settings.saveSettings(data);
+
+  useEffect(() => {
     getSaladSettings();
-  }, [saladSettings]);
+  }, []);
+
+  const onChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { checked, value } = event.currentTarget;
+    const updatedSettings = JSON.parse(JSON.stringify(saladSettings));
+
+    updatedSettings[value].enabled = checked;
+
+    setSaladSettings(updatedSettings);
+    saveSaladSettings(updatedSettings);
+  };
 
   return (
     <ReusableDrawer
@@ -46,9 +61,16 @@ const SettingsDrawer: React.FC = () => {
         className={classes.list}
         subheader={<ListSubheader>Salad Settings</ListSubheader>}
       >
-        {Object.keys(saladIngredients).map((ingredient) => (
-          <ListItemSwitch>{ingredient}</ListItemSwitch>
-        ))}
+        {saladSettings &&
+          Object.keys(saladSettings).map((key) => (
+            <SettingsSwitch
+              key={key}
+              onChange={onChange}
+              settings={saladSettings[key]}
+            >
+              {key}
+            </SettingsSwitch>
+          ))}
       </List>
     </ReusableDrawer>
   );
