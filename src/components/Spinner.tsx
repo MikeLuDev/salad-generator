@@ -19,6 +19,7 @@ import RefreshIcon from '@material-ui/icons/Refresh';
 
 import spinSalad from '../js/spinSalad';
 import SettingsDrawer from './SettingsDrawer';
+import util from '../js/util';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -78,11 +79,13 @@ const Spinner: React.FC = () => {
                   const ingredients = salad[key]!;
                   return (
                     <TableRow>
-                      <TableCell>{key}</TableCell>
+                      <TableCell>{key.substr(6, key.length)}</TableCell>
                       <TableCell>
                         <List>
                           {ingredients.map((item) => (
-                            <ListItem>{item}</ListItem>
+                            <ListItem>
+                              {util.capitalizeFirstLetter(item)}
+                            </ListItem>
                           ))}
                         </List>
                       </TableCell>
