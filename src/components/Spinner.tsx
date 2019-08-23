@@ -91,7 +91,7 @@ const Spinner: React.FC = () => {
                       </TableCell>
                     </TableRow>
                   );
-                }
+                } else return null;
               })}
             </TableBody>
           </Table>
