@@ -11,6 +11,8 @@ import {
   TableCell,
   TableBody,
   Theme,
+  List,
+  ListItem,
 } from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/styles';
 import RefreshIcon from '@material-ui/icons/Refresh';
@@ -37,10 +39,12 @@ const Spinner: React.FC = () => {
   const classes = useStyles();
   const [salad, setSalad] = useState<ISalad | null>(null);
 
-  const getSalad = () => {
-    const newSalad = spinSalad();
+  const getSalad = async () => {
+    const newSalad = await spinSalad();
     setSalad(newSalad);
   };
+
+  console.log(salad);
 
   return (
     <Box textAlign="center">
@@ -69,36 +73,23 @@ const Spinner: React.FC = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              <TableRow>
-                <TableCell>Greens</TableCell>
-                <TableCell>{salad.chosenGreens[0]}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>Grains</TableCell>
-                <TableCell>{salad.chosenGrains[0]}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>Veggies</TableCell>
-                <TableCell>
-                  {salad.chosenVeggies.map((veggie) => `${veggie} `)}
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>Fruits</TableCell>
-                <TableCell>{salad.chosenFruits[0]}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>Protein</TableCell>
-                <TableCell>{salad.chosenProteins[0]}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>Cheese</TableCell>
-                <TableCell>{salad.chosenCheeses[0]}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>Garnish</TableCell>
-                <TableCell>{salad.chosenGarnishes[0]}</TableCell>
-              </TableRow>
+              {Object.keys(salad).map((key) => {
+                if (salad[key] !== undefined) {
+                  const ingredients = salad[key]!;
+                  return (
+                    <TableRow>
+                      <TableCell>{key}</TableCell>
+                      <TableCell>
+                        <List>
+                          {ingredients.map((item) => (
+                            <ListItem>{item}</ListItem>
+                          ))}
+                        </List>
+                      </TableCell>
+                    </TableRow>
+                  );
+                }
+              })}
             </TableBody>
           </Table>
         </Paper>

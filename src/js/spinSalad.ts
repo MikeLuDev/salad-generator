@@ -1,5 +1,6 @@
 import saladIngredients from '../constants/saladIngredients';
 import util from './util';
+import settings from './settings';
 
 const { getRandomInt } = util;
 
@@ -21,7 +22,7 @@ const pickRandomIngredients = (ingredients: string[], count: number) => {
   return pickedIngredients;
 };
 
-export default () => {
+export default async () => {
   const {
     greens,
     grains,
@@ -32,13 +33,29 @@ export default () => {
     garnishes,
   } = saladIngredients;
 
-  const chosenGreens = pickRandomIngredients(greens, 1);
-  const chosenGrains = pickRandomIngredients(grains, 1);
-  const chosenVeggies = pickRandomIngredients(veggies, 3);
-  const chosenFruits = pickRandomIngredients(fruits, 1);
-  const chosenProteins = pickRandomIngredients(proteins, 1);
-  const chosenCheeses = pickRandomIngredients(cheeses, 1);
-  const chosenGarnishes = pickRandomIngredients(garnishes, 1);
+  const saladSettings = await settings.getSettings();
+
+  const chosenGreens = saladSettings.greens.enabled
+    ? pickRandomIngredients(greens, saladSettings.greens.amount)
+    : undefined;
+  const chosenGrains = saladSettings.grains.enabled
+    ? pickRandomIngredients(grains, saladSettings.grains.amount)
+    : undefined;
+  const chosenVeggies = saladSettings.veggies.enabled
+    ? pickRandomIngredients(veggies, saladSettings.veggies.amount)
+    : undefined;
+  const chosenFruits = saladSettings.fruits.enabled
+    ? pickRandomIngredients(fruits, saladSettings.fruits.amount)
+    : undefined;
+  const chosenProteins = saladSettings.proteins.enabled
+    ? pickRandomIngredients(proteins, saladSettings.proteins.amount)
+    : undefined;
+  const chosenCheeses = saladSettings.cheeses.enabled
+    ? pickRandomIngredients(cheeses, saladSettings.cheeses.amount)
+    : undefined;
+  const chosenGarnishes = saladSettings.garnishes.enabled
+    ? pickRandomIngredients(garnishes, saladSettings.garnishes.amount)
+    : undefined;
 
   return {
     chosenGreens,
