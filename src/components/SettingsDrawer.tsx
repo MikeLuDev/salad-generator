@@ -31,6 +31,7 @@ const SettingsDrawer: React.FC = () => {
   const [saladSettings, setSaladSettings] = useState<IUserOptions>(
     defaultSettings,
   );
+  const stringifiedSettings = JSON.stringify(saladSettings);
 
   const getSaladSettings = () =>
     settings.getSettings().then((response) => {
@@ -42,11 +43,11 @@ const SettingsDrawer: React.FC = () => {
 
   useEffect(() => {
     getSaladSettings();
-  }, []);
+  }, [stringifiedSettings]);
 
   const onSwitchChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const { checked, value } = event.currentTarget;
-    const settingsCopy = JSON.parse(JSON.stringify(saladSettings));
+    const settingsCopy = JSON.parse(stringifiedSettings);
 
     settingsCopy[value].enabled = checked;
 
@@ -55,7 +56,7 @@ const SettingsDrawer: React.FC = () => {
   };
 
   const onSliderChange = async (type: string, value: number | number[]) => {
-    const settingsCopy = JSON.parse(JSON.stringify(saladSettings));
+    const settingsCopy = JSON.parse(stringifiedSettings);
 
     settingsCopy[type].amount = value;
 
