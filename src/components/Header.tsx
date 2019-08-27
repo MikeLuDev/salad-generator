@@ -1,26 +1,17 @@
 import React from 'react';
-import {
-  AppBar,
-  Typography,
-  Toolbar,
-  IconButton,
-  MenuItem,
-  Menu,
-  Container,
-} from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
+import { AppBar, Typography, Toolbar, Container } from '@material-ui/core';
 
 const Header: React.FC = () => {
-  const [anchorEl, setAnchorEl] = React.useState<Element | null>(null);
+  /* const [anchorEl, setAnchorEl] = React.useState<Element | null>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) =>
     setAnchorEl(event.currentTarget as Element);
-  const handleClose = () => setAnchorEl(null);
+  const handleClose = () => setAnchorEl(null); */
 
   return (
     <AppBar color="primary" position="static">
       <Toolbar>
-        <Container style={{ textAlign: 'center' }} maxWidth="md">
+        <Container style={{ textAlign: 'center' }} maxWidth="sm">
           <Typography variant="h6">Salad Generator</Typography>
         </Container>
         {/*  <IconButton

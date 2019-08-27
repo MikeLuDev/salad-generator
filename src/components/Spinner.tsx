@@ -11,8 +11,6 @@ import {
   TableCell,
   TableBody,
   Theme,
-  List,
-  ListItem,
 } from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/styles';
 import RefreshIcon from '@material-ui/icons/Refresh';
@@ -45,8 +43,6 @@ const Spinner: React.FC = () => {
     setSalad(newSalad);
   };
 
-  console.log(salad);
-
   return (
     <Box textAlign="center">
       <SettingsDrawer />
@@ -59,12 +55,7 @@ const Spinner: React.FC = () => {
         <RefreshIcon className={classes.iconLeft} />
         New Salad
       </Button>
-      {!salad && (
-        <Typography className={classes.table} variant="body1">
-          Hit the button above to start making salads!
-        </Typography>
-      )}
-      {salad && (
+      {salad ? (
         <Paper className={classes.table}>
           <Table>
             <TableHead>
@@ -78,16 +69,18 @@ const Spinner: React.FC = () => {
                 if (salad[key] !== undefined) {
                   const ingredients = salad[key]!;
                   return (
-                    <TableRow>
-                      <TableCell>{key.substr(6, key.length)}</TableCell>
+                    <TableRow key={key}>
                       <TableCell>
-                        <List>
-                          {ingredients.map((item) => (
-                            <ListItem>
-                              {util.capitalizeFirstLetter(item)}
-                            </ListItem>
-                          ))}
-                        </List>
+                        <Typography variant="body1">
+                          {key.substr(6, key.length)}
+                        </Typography>
+                      </TableCell>
+                      <TableCell>
+                        {ingredients.map((item) => (
+                          <Typography variant="body1" key={`${key}-${item}`}>
+                            {util.capitalizeFirstLetter(item)}
+                          </Typography>
+                        ))}
                       </TableCell>
                     </TableRow>
                   );
@@ -96,6 +89,10 @@ const Spinner: React.FC = () => {
             </TableBody>
           </Table>
         </Paper>
+      ) : (
+        <Typography className={classes.table} variant="body1">
+          Hit the button above to start making salads!
+        </Typography>
       )}
     </Box>
   );

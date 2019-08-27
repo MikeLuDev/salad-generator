@@ -80,7 +80,7 @@ const SettingsDrawer: React.FC = () => {
                 onChange={onSwitchChange}
                 settings={saladSettings[key]}
               >
-                {key}
+                {`${key} (${saladSettings[key].amount})`}
               </SettingsSwitch>
               <SettingsSlider
                 onChange={onSliderChange}
