@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ThemeProvider, makeStyles } from '@material-ui/styles';
-import { createMuiTheme, Container, Typography } from '@material-ui/core';
+import { createMuiTheme, Container, Typography, Box } from '@material-ui/core';
 import { green } from '@material-ui/core/colors';
 
 import Header from './components/Header';
@@ -18,12 +18,14 @@ const theme = createMuiTheme({
 
 const useStyles = makeStyles({
   root: {
-    padding: '16px',
+    height: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
   },
-  h1: {
+  footer: {
     textAlign: 'center',
-    fontSize: '48px',
-    marginBottom: theme.spacing(2),
+    marginTop: 'auto',
+    padding: theme.spacing(2),
   },
 });
 
@@ -32,13 +34,15 @@ const App: React.FC = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Header />
-      <Container className={classes.root} maxWidth="sm">
-        <Typography className={classes.h1} variant="h1">
-          Salad Generator
-        </Typography>
-        <Spinner />
-      </Container>
+      <Box className={classes.root}>
+        <Header />
+        <Container maxWidth="sm">
+          <Spinner />
+        </Container>
+        <footer className={classes.footer}>
+          <Typography variant="body1">Made by Michael Lu</Typography>
+        </footer>
+      </Box>
     </ThemeProvider>
   );
 };

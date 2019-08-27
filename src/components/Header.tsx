@@ -1,7 +1,28 @@
 import React from 'react';
-import { AppBar, Typography, Toolbar, Container } from '@material-ui/core';
+import {
+  AppBar,
+  Typography,
+  Toolbar,
+  Container,
+  makeStyles,
+  Theme,
+  createStyles,
+} from '@material-ui/core';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      marginBottom: theme.spacing(2),
+    },
+    h1: {
+      fontSize: '20px',
+      fontWeight: 500,
+    },
+  }),
+);
 
 const Header: React.FC = () => {
+  const classes = useStyles();
   /* const [anchorEl, setAnchorEl] = React.useState<Element | null>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) =>
@@ -9,10 +30,12 @@ const Header: React.FC = () => {
   const handleClose = () => setAnchorEl(null); */
 
   return (
-    <AppBar color="primary" position="static">
+    <AppBar className={classes.root} color="primary" position="static">
       <Toolbar>
         <Container style={{ textAlign: 'center' }} maxWidth="sm">
-          <Typography variant="h6">Salad Generator</Typography>
+          <Typography className={classes.h1} variant="h1">
+            Salad Generator
+          </Typography>
         </Container>
         {/*  <IconButton
           edge="start"
