@@ -10,9 +10,15 @@ import util from '../js/util';
 type Props = {
   settings: ISingleOption;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value: string;
 };
 
-const ListItemSwitch: React.FC<Props> = ({ children, settings, onChange }) => {
+const ListItemSwitch: React.FC<Props> = ({
+  children,
+  settings,
+  onChange,
+  value,
+}) => {
   return (
     <ListItem>
       <ListItemText>
@@ -22,7 +28,7 @@ const ListItemSwitch: React.FC<Props> = ({ children, settings, onChange }) => {
         <Switch
           size="small"
           onChange={onChange}
-          value={children}
+          value={value}
           color="primary"
           checked={settings.enabled}
         />

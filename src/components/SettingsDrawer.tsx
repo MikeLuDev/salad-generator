@@ -77,6 +77,7 @@ const SettingsDrawer: React.FC = () => {
           Object.keys(saladSettings).map((key) => (
             <Fragment key={`settings-fragment-${key}`}>
               <SettingsSwitch
+                value={key}
                 onChange={onSwitchChange}
                 settings={saladSettings[key]}
               >

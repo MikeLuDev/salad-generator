@@ -28,7 +28,7 @@ const settings = {
 
       settingsRequest.onsuccess = (event) => {
         const { result } = event.target as IDBRequest;
-        console.log(result);
+
         resolve(result);
       };
 
