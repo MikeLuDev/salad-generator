@@ -23,6 +23,7 @@ Current features:
 - Ability to "hold" ingredients when generating OR regenerate specific ingredients
   - This will allow users to continue tweaking a salad which is good for most of the ingredients, but has one or two weird ones
 - Ability to save salads
+- Settings presets dropdown
 
 ## Potential Ideas
 
