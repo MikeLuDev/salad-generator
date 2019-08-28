@@ -1,44 +1,60 @@
+# Salad Generator
+
+This project is designed to be a simple tool that can generate salad ideas.
+
+Hosted at [https://www.salad-generator.com](https://www.salad-generator.com)
+
+Found a bug? Post it under Issues on Github :beers:
+
+## Features
+
+This is a **progressive web application** which provides an installable experience for users on any internet accessible device.
+
+Current features:
+
+:heavy_check_mark: Generate a random salad with the press of a button
+
+:heavy_check_mark: Enable/disable ingredients
+
+:heavy_check_mark: Specify the amount of ingredients per type in generation
+
+## Roadmap
+
+- Ability to "hold" ingredients when generating OR regenerate specific ingredients
+  - This will allow users to continue tweaking a salad which is good for most of the ingredients, but has one or two weird ones
+- Ability to save salads
+
+## Potential Ideas
+
+- Download .pdf of recipes
+- Upvote salads
+  - Community favorites list
+  - Machine learning to guide generation
+- Seasonal salads
+- Pictures of salads
+
+## Installation
+
+The latest version of Node is required.
+
+Clone the repository and run `npm install`.
+
+```bash
+# Start a local development server
+npm run start
+
+# Create a production build
+npm run build
+```
+
+## Contributing
+
+Contributions are welcome!
+
+Please create an issue before contributing to this project. Features should be worked on in separate branches and pull requests should be made for every proposed change.
+
+## About
+
+Built and maintained by Michael Lu
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
