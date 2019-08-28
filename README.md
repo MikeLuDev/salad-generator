@@ -32,6 +32,8 @@ Current features:
   - Machine learning to guide generation
 - Seasonal salads
 - Pictures of salads
+- Serving size
+- Calories
 
 ## Installation
 
