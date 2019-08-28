@@ -36,7 +36,7 @@ const SettingsSlider: React.FC<Props> = ({ settings, type, onChange }) => {
       {Object.keys(saladIngredients).includes(type) && (
         <Slider
           onChangeCommitted={sendValueToParent}
-          min={0}
+          min={1}
           max={saladIngredients[type].length}
           step={1}
           defaultValue={amount}
