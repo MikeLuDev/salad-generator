@@ -71,9 +71,7 @@ const Spinner: React.FC = () => {
                   return (
                     <TableRow key={key}>
                       <TableCell>
-                        <Typography variant="body1">
-                          {key.substr(6, key.length)}
-                        </Typography>
+                        <Typography variant="body1">{key}</Typography>
                       </TableCell>
                       <TableCell>
                         {ingredients.map((item) => (

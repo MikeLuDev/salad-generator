@@ -1,7 +1,7 @@
 import React from 'react';
 import { Slider, Theme, Box } from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/styles';
-import saladIngredients from '../constants/saladIngredients';
+import { ingredientMetadata } from '../constants/saladIngredients';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -33,11 +33,11 @@ const SettingsSlider: React.FC<Props> = ({ settings, type, onChange }) => {
 
   return (
     <Box className={classes.root}>
-      {Object.keys(saladIngredients).includes(type) && (
+      {Object.keys(ingredientMetadata).includes(type) && (
         <Slider
           onChangeCommitted={sendValueToParent}
           min={1}
-          max={saladIngredients[type].length}
+          max={ingredientMetadata[type].amount}
           step={1}
           defaultValue={amount}
           valueLabelDisplay="auto"
