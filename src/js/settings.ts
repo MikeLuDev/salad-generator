@@ -57,6 +57,13 @@ const ingredientSettings = {
     helpers.saveSettings(SETTINGS_OBJECT_STORE, SETTINGS_KEY, data),
 };
 
-const settings = { ingredientSettings };
+const dietarySettings = {
+  getDietarySettings: () =>
+    helpers.getSettings(SETTINGS_OBJECT_STORE, DIETARY_KEY),
+  saveDietarySettings: (data: IUserOptions) =>
+    helpers.saveSettings(SETTINGS_OBJECT_STORE, DIETARY_KEY, data),
+};
+
+const settings = { ingredientSettings, dietarySettings };
 
 export { settings as default, SETTINGS_KEY, DIETARY_KEY };
