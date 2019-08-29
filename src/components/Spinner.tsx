@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme: Theme) =>
       marginRight: theme.spacing(1),
     },
     root: {
-      padding: theme.spacing(2),
+      padding: theme.spacing(2, 0, 2, 0),
       textAlign: 'center',
     },
   }),
