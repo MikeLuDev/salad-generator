@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme: Theme) =>
     closeButtonContainer: {
       textAlign: 'center',
       padding: theme.spacing(2, 0, 3, 0),
+      width: '300px',
     },
     infoText: {
       marginBottom: theme.spacing(2),
