@@ -8,6 +8,7 @@ const useStyles = makeStyles((theme: Theme) =>
       textAlign: 'center',
       marginTop: 'auto',
       padding: theme.spacing(2),
+      borderTop: '1px solid rgba(0, 0, 0, 0.12)',
     },
   }),
 );

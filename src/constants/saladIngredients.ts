@@ -232,7 +232,6 @@ const getIngredientInfo = () => {
     metaInfo[currentCategory].amount += 1;
   });
 
-  console.log(metaInfo);
   return metaInfo;
 };
 

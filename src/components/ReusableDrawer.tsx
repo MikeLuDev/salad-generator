@@ -1,21 +1,25 @@
 import React, { Fragment, ReactNode } from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { Drawer, Button } from '@material-ui/core';
+import { Drawer, Button, Box, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     button: {
       margin: theme.spacing(1),
     },
+    closeButtonContainer: {
+      textAlign: 'center',
+      margin: theme.spacing(1),
+    },
   }),
 );
 
 type Props = {
-  label: string,
-  icon: ReactNode,
+  label: string;
+  icon: ReactNode;
 };
 
-const ReusableDrawer: React.FC<Props> = ({ children, label, icon, }) => {
+const ReusableDrawer: React.FC<Props> = ({ children, label, icon }) => {
   const classes = useStyles();
   const [state, setState] = React.useState({
     left: false,
@@ -48,6 +52,18 @@ const ReusableDrawer: React.FC<Props> = ({ children, label, icon, }) => {
       </Button>
       <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
         {children}
+        <Box className={classes.closeButtonContainer}>
+          <Typography style={{ marginBottom: '16px' }} variant="body1">
+            All settings are saved automatically
+          </Typography>
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={toggleDrawer('left', false)}
+          >
+            CLOSE
+          </Button>
+        </Box>
       </Drawer>
     </Fragment>
   );

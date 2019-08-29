@@ -31,6 +31,10 @@ const useStyles = makeStyles((theme: Theme) =>
     iconLeft: {
       marginRight: theme.spacing(1),
     },
+    root: {
+      padding: theme.spacing(2),
+      textAlign: 'center',
+    },
   }),
 );
 
@@ -44,7 +48,7 @@ const Spinner: React.FC = () => {
   };
 
   return (
-    <Box textAlign="center">
+    <Box className={classes.root}>
       <SettingsDrawer />
       <Button
         className={classes.button}
@@ -71,7 +75,9 @@ const Spinner: React.FC = () => {
                   return (
                     <TableRow key={key}>
                       <TableCell>
-                        <Typography variant="body1">{key}</Typography>
+                        <Typography variant="body1">
+                          {util.capitalizeFirstLetter(key)}
+                        </Typography>
                       </TableCell>
                       <TableCell>
                         {ingredients.map((item) => (
