@@ -30,7 +30,7 @@ const pickRandomIngredients = (category: string, count: number) => {
 };
 
 export default async () => {
-  const saladSettings = await settings.getSettings();
+  const saladSettings = await settings.ingredientSettings.getIngredientSettings();
   const result: ISalad = {};
 
   const settingsKeys: string[] = Object.keys(saladSettings);

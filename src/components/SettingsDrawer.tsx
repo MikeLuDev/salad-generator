@@ -34,12 +34,12 @@ const SettingsDrawer: React.FC = () => {
   const stringifiedSettings = JSON.stringify(saladSettings);
 
   const getSaladSettings = () =>
-    settings.getSettings().then((response) => {
+    settings.ingredientSettings.getIngredientSettings().then((response) => {
       setSaladSettings(response);
     });
 
   const saveSaladSettings = (data: IUserOptions = saladSettings) =>
-    settings.saveSettings(data);
+    settings.ingredientSettings.saveIngredientSettings(data);
 
   useEffect(() => {
     getSaladSettings();
