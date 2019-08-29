@@ -71,7 +71,11 @@ const SettingsDrawer: React.FC = () => {
     >
       <List
         className={classes.list}
-        subheader={<ListSubheader>Salad Settings</ListSubheader>}
+        subheader={
+          <ListSubheader color="inherit" disableSticky>
+            Salad Settings
+          </ListSubheader>
+        }
       >
         <Divider />
         {saladSettings &&
