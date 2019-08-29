@@ -1,9 +1,15 @@
 import { dbRequest, SETTINGS_OBJECT_STORE } from './db';
 
+const SETTINGS_KEY = 'userSettingsKey';
+const DIETARY_KEY = 'userDietaryKey';
+
 const settings = {
   getSettings: async () => {
     return new Promise<IUserOptions>((resolve, reject) => {
-      const settingsRequest = dbRequest.get(SETTINGS_OBJECT_STORE, 1);
+      const settingsRequest = dbRequest.get(
+        SETTINGS_OBJECT_STORE,
+        SETTINGS_KEY,
+      );
 
       settingsRequest.onsuccess = (event) => {
         const { result } = event.target as IDBRequest;
@@ -22,7 +28,7 @@ const settings = {
     return new Promise<IUserOptions>((resolve, reject) => {
       const settingsRequest = dbRequest.update(
         SETTINGS_OBJECT_STORE,
-        1,
+        SETTINGS_KEY,
         settings,
       );
 
@@ -40,4 +46,4 @@ const settings = {
   },
 };
 
-export default settings;
+export { settings as default, SETTINGS_KEY, DIETARY_KEY };

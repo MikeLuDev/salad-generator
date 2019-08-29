@@ -28,3 +28,7 @@ interface ISingleOption {
 interface IUserOptions {
   [propName: string]: ISingleOption;
 }
+
+interface IDietaryOptions {
+  [key: string]: bool;
+}

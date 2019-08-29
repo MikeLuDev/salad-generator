@@ -1,4 +1,4 @@
-const settings = {
+const saladDefaultSettings: IUserOptions = {
   greens: {
     enabled: true,
     amount: 1,
@@ -29,4 +29,14 @@ const settings = {
   },
 };
 
-export default settings;
+const dietaryDefaultSettings: IDietaryOptions = {
+  vegan: false,
+  vegetarian: false,
+  pescetarian: false,
+  lowCarb: false,
+  dairyFree: false,
+  soyFree: false,
+  glutenFree: false,
+};
+
+export { saladDefaultSettings as default, dietaryDefaultSettings };
