@@ -1,5 +1,19 @@
+const categories =
+  'greens' |
+  'grains' |
+  'veggies' |
+  'fruits' |
+  'proteins' |
+  'cheeses' |
+  'garnishes';
+
+interface ISingleIngredient {
+  category: categories;
+  tags: string[];
+}
+
 interface IIngredients {
-  [propName: string]: string[];
+  [ingredientName: string]: ISingleIngredient;
 }
 
 interface ISalad {

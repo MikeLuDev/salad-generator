@@ -4,66 +4,46 @@ import settings from './settings';
 
 const { getRandomInt } = util;
 
-const pickRandomIngredients = (ingredients: string[], count: number) => {
+const pickRandomIngredients = (category: string, count: number) => {
+  const pickedIndexes: number[] = [];
+  const pickedIngredientKeys: string[] = [];
+  const ingredientKeys: string[] = Object.keys(saladIngredients);
+  const ingredients: string[] = ingredientKeys.filter((key) => {
+    if (saladIngredients[key].category === category) return key;
+    else return null;
+  });
+
+  if (!ingredients.length) return;
   if (count > ingredients.length) return ingredients;
 
-  const pickedIndexes: number[] = [];
-  const pickedIngredients: string[] = [];
-
   for (let i = 0; i < count; i += 1) {
-    let randomInt = getRandomInt(ingredients.length);
+    let randomInt: number = getRandomInt(ingredients.length);
+
     while (pickedIndexes.includes(randomInt))
       randomInt = getRandomInt(ingredients.length);
 
     pickedIndexes.push(randomInt);
-    pickedIngredients[i] = ingredients[randomInt];
+    pickedIngredientKeys[i] = ingredients[randomInt];
   }
 
-  return pickedIngredients;
+  return pickedIngredientKeys;
 };
 
 export default async () => {
-  const {
-    greens,
-    grains,
-    veggies,
-    fruits,
-    proteins,
-    cheeses,
-    garnishes,
-  } = saladIngredients;
-
   const saladSettings = await settings.getSettings();
+  const result: ISalad = {};
 
-  const chosenGreens = saladSettings.greens.enabled
-    ? pickRandomIngredients(greens, saladSettings.greens.amount)
-    : undefined;
-  const chosenGrains = saladSettings.grains.enabled
-    ? pickRandomIngredients(grains, saladSettings.grains.amount)
-    : undefined;
-  const chosenVeggies = saladSettings.veggies.enabled
-    ? pickRandomIngredients(veggies, saladSettings.veggies.amount)
-    : undefined;
-  const chosenFruits = saladSettings.fruits.enabled
-    ? pickRandomIngredients(fruits, saladSettings.fruits.amount)
-    : undefined;
-  const chosenProteins = saladSettings.proteins.enabled
-    ? pickRandomIngredients(proteins, saladSettings.proteins.amount)
-    : undefined;
-  const chosenCheeses = saladSettings.cheeses.enabled
-    ? pickRandomIngredients(cheeses, saladSettings.cheeses.amount)
-    : undefined;
-  const chosenGarnishes = saladSettings.garnishes.enabled
-    ? pickRandomIngredients(garnishes, saladSettings.garnishes.amount)
-    : undefined;
+  const settingsKeys: string[] = Object.keys(saladSettings);
+  const enabledCategories: string[] = settingsKeys.filter(
+    (key) => saladSettings[key].enabled === true,
+  );
 
-  return {
-    chosenGreens,
-    chosenGrains,
-    chosenVeggies,
-    chosenFruits,
-    chosenProteins,
-    chosenCheeses,
-    chosenGarnishes,
-  };
+  enabledCategories.forEach((category) => {
+    const count = saladSettings[category].amount;
+
+    const ingredients = pickRandomIngredients(category, count);
+    if (ingredients !== undefined) result[category] = ingredients;
+  });
+
+  return result;
 };
