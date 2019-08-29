@@ -107,15 +107,15 @@ const ingredients: IIngredients = {
     category: 'fruits',
     tags: ['vegan', 'vegetarian'],
   },
-  cherries: {
+  cherry: {
     category: 'fruits',
     tags: ['vegan', 'vegetarian'],
   },
-  pears: {
+  pear: {
     category: 'fruits',
     tags: ['vegan', 'vegetarian'],
   },
-  peaches: {
+  peach: {
     category: 'fruits',
     tags: ['vegan', 'vegetarian'],
   },
