@@ -10,6 +10,7 @@ import {
   Radio,
   RadioGroup,
   Divider,
+  Typography,
 } from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/styles';
 import { dietaryDefaultSettings } from '../constants/defaultSettings';
@@ -18,7 +19,7 @@ import settings from '../js/settings';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      padding: theme.spacing(2),
+      padding: theme.spacing(2, 2, 0, 2),
     },
     formControl: {
       width: '100%',
@@ -32,6 +33,13 @@ const useStyles = makeStyles((theme: Theme) =>
     label: {
       marginBottom: theme.spacing(1),
     },
+    warningText: {
+      color: theme.palette.secondary.main,
+      fontSize: '14px',
+      maxWidth: '260px',
+      textAlign: 'center',
+      margin: theme.spacing(2, 0, 1, 0),
+    },
   }),
 );
 
@@ -42,6 +50,9 @@ const DietaryBoxes: React.FC = () => {
     dietaryDefaultSettings,
   );
   const stringifiedDietarySettings = JSON.stringify(dietarySettings);
+  const stringifiedDefaultDietarySettings = JSON.stringify(
+    dietaryDefaultSettings,
+  );
   const { diet, dairyFree, glutenFree, lowCarb, soyFree } = dietarySettings;
 
   const getDietarySettings = () =>
@@ -51,6 +62,9 @@ const DietaryBoxes: React.FC = () => {
 
   const saveDietarySettings = (data: IDietaryOptions = dietarySettings) =>
     settings.dietarySettings.saveDietarySettings(data);
+
+  const hasDietaryNeeds =
+    stringifiedDefaultDietarySettings !== stringifiedDietarySettings;
 
   useEffect(() => {
     getDietarySettings();
@@ -152,6 +166,12 @@ const DietaryBoxes: React.FC = () => {
           />
         </FormGroup>
       </FormControl>
+
+      {hasDietaryNeeds && (
+        <Typography className={classes.warningText}>
+          Dietary settings will affect the number of available ingredients.
+        </Typography>
+      )}
     </Box>
   );
 };

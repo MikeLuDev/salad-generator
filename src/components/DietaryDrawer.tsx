@@ -7,7 +7,8 @@ import DietarySettings from './DietarySettings';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     list: {
-      width: 300,
+      width: '300px',
+      maxWidth: '300px',
     },
     iconLeft: {
       marginRight: theme.spacing(1),

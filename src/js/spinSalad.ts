@@ -47,7 +47,7 @@ const filterIngredientsByDiet = async () => {
   if (lowCarb) filterByTag('carbs', false);
   if (dairyFree) filterByTag('soy', false);
   if (soyFree) filterByTag('soy', false);
-  if (soyFree) filterByTag('gluten', false);
+  if (glutenFree) filterByTag('gluten', false);
 
   return ingredients;
 };

@@ -37,7 +37,7 @@ const SettingsSlider: React.FC<Props> = ({ settings, type, onChange }) => {
         <Slider
           onChangeCommitted={sendValueToParent}
           min={1}
-          max={ingredientMetadata[type].amount}
+          max={5}
           step={1}
           defaultValue={amount}
           valueLabelDisplay="auto"
