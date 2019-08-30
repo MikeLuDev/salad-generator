@@ -158,6 +158,16 @@ const ingredients: IIngredients = [
     category: 'proteins',
     tags: ['vegan', 'vegetarian', 'soy', 'pescatarian'],
   },
+  {
+    name: 'seitan',
+    category: 'proteins',
+    tags: ['vegan', 'vegetarian', 'pescetarian', 'gluten', 'carbs'],
+  },
+  {
+    name: 'tempeh',
+    category: 'proteins',
+    tags: ['vegan', 'vegetarian', 'pescetarian', 'soy', 'carbs'],
+  },
   { name: 'shrimp', category: 'proteins', tags: ['pescatarian'] },
   { name: 'tuna', category: 'proteins', tags: ['pescatarian'] },
   { name: 'salmon', category: 'proteins', tags: ['pescatarian'] },
