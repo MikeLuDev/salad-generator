@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ThemeProvider, makeStyles } from '@material-ui/styles';
-import { createMuiTheme, Container, Box } from '@material-ui/core';
+import { createMuiTheme, Container, Box, CssBaseline } from '@material-ui/core';
 import { green } from '@material-ui/core/colors';
 
 import Header from './components/Header';
@@ -30,6 +30,7 @@ const App: React.FC = () => {
 
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <Box className={classes.root}>
         <Header />
         <Container maxWidth="sm">
