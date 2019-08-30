@@ -41,7 +41,7 @@ const ingredients: IIngredients = {
   },
   barley: {
     category: 'grains',
-    tags: ['vegan', 'vegetarian'],
+    tags: ['vegan', 'vegetarian', 'gluten'],
   },
   lentil: {
     category: 'grains',
