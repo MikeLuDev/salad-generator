@@ -18,6 +18,7 @@ import RefreshIcon from '@material-ui/icons/Refresh';
 import spinSalad from '../js/spinSalad';
 import SettingsDrawer from './SettingsDrawer';
 import util from '../js/util';
+import DietaryDrawer from './DietaryDrawer';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -32,7 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
       marginRight: theme.spacing(1),
     },
     root: {
-      padding: theme.spacing(2),
+      padding: theme.spacing(2, 0, 2, 0),
       textAlign: 'center',
     },
   }),
@@ -42,14 +43,12 @@ const Spinner: React.FC = () => {
   const classes = useStyles();
   const [salad, setSalad] = useState<ISalad | null>(null);
 
-  const getSalad = async () => {
-    const newSalad = await spinSalad();
-    setSalad(newSalad);
-  };
+  const getSalad = async () => setSalad(await spinSalad());
 
   return (
     <Box className={classes.root}>
       <SettingsDrawer />
+      <DietaryDrawer />
       <Button
         className={classes.button}
         onClick={getSalad}

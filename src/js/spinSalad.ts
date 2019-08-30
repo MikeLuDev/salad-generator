@@ -4,34 +4,66 @@ import settings from './settings';
 
 const { getRandomInt } = util;
 
-const pickRandomIngredients = (category: string, count: number) => {
+const pickRandomIngredients = (
+  category: string,
+  count: number,
+  ingredients: IIngredients,
+) => {
   const pickedIndexes: number[] = [];
   const pickedIngredientKeys: string[] = [];
-  const ingredientKeys: string[] = Object.keys(saladIngredients);
-  const ingredients: string[] = ingredientKeys.filter((key) => {
-    if (saladIngredients[key].category === category) return key;
-    else return null;
-  });
 
-  if (!ingredients.length) return;
-  if (count > ingredients.length) return ingredients;
+  const ingredientNames: string[] = ingredients
+    .filter((ingredient) => ingredient.category === category)
+    .map((ingredient) => ingredient.name);
+
+  if (!ingredientNames.length) return;
+  if (count > ingredientNames.length) return ingredientNames;
 
   for (let i = 0; i < count; i += 1) {
-    let randomInt: number = getRandomInt(ingredients.length);
+    let randomInt: number = getRandomInt(ingredientNames.length);
 
     while (pickedIndexes.includes(randomInt))
-      randomInt = getRandomInt(ingredients.length);
+      randomInt = getRandomInt(ingredientNames.length);
 
     pickedIndexes.push(randomInt);
-    pickedIngredientKeys[i] = ingredients[randomInt];
+    pickedIngredientKeys[i] = ingredientNames[randomInt];
   }
 
   return pickedIngredientKeys;
 };
 
+const filterIngredientsByDiet = async () => {
+  const dietarySettings = await settings.dietarySettings.getDietarySettings();
+  const {
+    diet,
+    lowCarb,
+    dairyFree,
+    soyFree,
+    glutenFree,
+    nutFree,
+  } = dietarySettings;
+  let ingredients = saladIngredients;
+
+  const filterByTag = (tag: string, includes: boolean = true) => {
+    ingredients = ingredients.filter((ingredient) =>
+      includes ? ingredient.tags.includes(tag) : !ingredient.tags.includes(tag),
+    );
+  };
+
+  if (diet !== 'none') filterByTag(diet);
+  if (lowCarb) filterByTag('carbs', false);
+  if (dairyFree) filterByTag('soy', false);
+  if (soyFree) filterByTag('soy', false);
+  if (glutenFree) filterByTag('gluten', false);
+  if (nutFree) filterByTag('nuts', false);
+
+  return ingredients;
+};
+
 export default async () => {
-  const saladSettings = await settings.getSettings();
   const result: ISalad = {};
+  const saladSettings = await settings.ingredientSettings.getIngredientSettings();
+  const dietaryIngredients = await filterIngredientsByDiet();
 
   const settingsKeys: string[] = Object.keys(saladSettings);
   const enabledCategories: string[] = settingsKeys.filter(
@@ -41,7 +73,11 @@ export default async () => {
   enabledCategories.forEach((category) => {
     const count = saladSettings[category].amount;
 
-    const ingredients = pickRandomIngredients(category, count);
+    const ingredients = pickRandomIngredients(
+      category,
+      count,
+      dietaryIngredients,
+    );
     if (ingredients !== undefined) result[category] = ingredients;
   });
 

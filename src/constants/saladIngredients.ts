@@ -1,217 +1,248 @@
-const ingredients: IIngredients = {
-  'bitter greens': {
+const ingredients: IIngredients = [
+  {
+    name: 'bitter greens',
     category: 'greens',
-    tags: ['vegan', 'vegetarian'],
+    tags: ['vegan', 'vegetarian', 'pescatarian'],
   },
-  'mixed greens': {
+  {
+    name: 'mixed greens',
     category: 'greens',
-    tags: ['vegan', 'vegetarian'],
+    tags: ['vegan', 'vegetarian', 'pescatarian'],
   },
-  'romaine lettuce': {
+  {
+    name: 'romaine lettuce',
     category: 'greens',
-    tags: ['vegan', 'vegetarian'],
+    tags: ['vegan', 'vegetarian', 'pescatarian'],
   },
-  'iceburg lettuce': {
+  {
+    name: 'iceburg lettuce',
     category: 'greens',
-    tags: ['vegan', 'vegetarian'],
+    tags: ['vegan', 'vegetarian', 'pescatarian'],
   },
-  arugula: {
+  {
+    name: 'arugula',
     category: 'greens',
-    tags: ['vegan', 'vegetarian'],
+    tags: ['vegan', 'vegetarian', 'pescatarian'],
   },
-  spinach: {
+  {
+    name: 'spinach',
     category: 'greens',
-    tags: ['vegan', 'vegetarian'],
+    tags: ['vegan', 'vegetarian', 'pescatarian'],
   },
-  cabbage: {
+  {
+    name: 'cabbage',
     category: 'greens',
-    tags: ['vegan', 'vegetarian'],
+    tags: ['vegan', 'vegetarian', 'pescatarian'],
   },
-  quinoa: {
+  {
+    name: 'quinoa',
     category: 'grains',
-    tags: ['vegan', 'vegetarian'],
+    tags: ['vegan', 'vegetarian', 'pescatarian', 'carbs'],
   },
-  rice: {
+  {
+    name: 'rice',
     category: 'grains',
-    tags: ['vegan', 'vegetarian'],
+    tags: ['vegan', 'vegetarian', 'pescatarian', 'carbs'],
   },
-  farro: {
+  {
+    name: 'farro',
     category: 'grains',
-    tags: ['vegan', 'vegetarian'],
+    tags: ['vegan', 'vegetarian', 'pescatarian', 'carbs'],
   },
-  barley: {
+  {
+    name: 'barley',
     category: 'grains',
-    tags: ['vegan', 'vegetarian'],
+    tags: ['vegan', 'vegetarian', 'gluten', 'pescatarian'],
   },
-  lentil: {
+  {
+    name: 'lentil',
     category: 'grains',
-    tags: ['vegan', 'vegetarian'],
+    tags: ['vegan', 'vegetarian', 'pescatarian', 'carbs'],
   },
-  pasta: {
+  {
+    name: 'pasta',
     category: 'grains',
-    tags: ['vegan', 'vegetarian', 'gluten'],
+    tags: ['vegan', 'vegetarian', 'gluten', 'pescatarian', 'carbs'],
   },
-  beet: {
+  {
+    name: 'beet',
     category: 'veggies',
-    tags: ['vegan', 'vegetarian'],
+    tags: ['vegan', 'vegetarian', 'pescatarian'],
   },
-  carrot: {
+  {
+    name: 'carrot',
     category: 'veggies',
-    tags: ['vegan', 'vegetarian'],
+    tags: ['vegan', 'vegetarian', 'pescatarian'],
   },
-  tomato: {
+  {
+    name: 'tomato',
     category: 'veggies',
-    tags: ['vegan', 'vegetarian'],
+    tags: ['vegan', 'vegetarian', 'pescatarian'],
   },
-  avocado: {
+  {
+    name: 'avocado',
     category: 'veggies',
-    tags: ['vegan', 'vegetarian'],
+    tags: ['vegan', 'vegetarian', 'pescatarian'],
   },
-  'bell pepper': {
+  {
+    name: 'bell pepper',
     category: 'veggies',
-    tags: ['vegan', 'vegetarian'],
+    tags: ['vegan', 'vegetarian', 'pescatarian'],
   },
-  celery: {
+  {
+    name: 'celery',
     category: 'veggies',
-    tags: ['vegan', 'vegetarian'],
+    tags: ['vegan', 'vegetarian', 'pescatarian'],
   },
-  mushroom: {
+  {
+    name: 'mushroom',
     category: 'veggies',
-    tags: ['vegan', 'vegetarian'],
+    tags: ['vegan', 'vegetarian', 'pescatarian'],
   },
-  onion: {
+  {
+    name: 'onion',
     category: 'veggies',
-    tags: ['vegan', 'vegetarian'],
+    tags: ['vegan', 'vegetarian', 'pescatarian'],
   },
-  squash: {
+  {
+    name: 'squash',
     category: 'veggies',
-    tags: ['vegan', 'vegetarian'],
+    tags: ['vegan', 'vegetarian', 'pescatarian'],
   },
-  cucumber: {
+  {
+    name: 'cucumber',
     category: 'veggies',
-    tags: ['vegan', 'vegetarian'],
+    tags: ['vegan', 'vegetarian', 'pescatarian'],
   },
-  broccoli: {
+  {
+    name: 'broccoli',
     category: 'veggies',
-    tags: ['vegan', 'vegetarian'],
+    tags: ['vegan', 'vegetarian', 'pescatarian'],
   },
-  cauliflower: {
+  {
+    name: 'cauliflower',
     category: 'veggies',
-    tags: ['vegan', 'vegetarian'],
+    tags: ['vegan', 'vegetarian', 'pescatarian'],
   },
-  apple: {
+  {
+    name: 'apple',
     category: 'fruits',
-    tags: ['vegan', 'vegetarian'],
+    tags: ['vegan', 'vegetarian', 'pescatarian'],
   },
-  orange: {
+  {
+    name: 'orange',
     category: 'fruits',
-    tags: ['vegan', 'vegetarian'],
+    tags: ['vegan', 'vegetarian', 'pescatarian'],
   },
-  cherries: {
+  {
+    name: 'cherry',
     category: 'fruits',
-    tags: ['vegan', 'vegetarian'],
+    tags: ['vegan', 'vegetarian', 'pescatarian'],
   },
-  pears: {
+  {
+    name: 'pear',
     category: 'fruits',
-    tags: ['vegan', 'vegetarian'],
+    tags: ['vegan', 'vegetarian', 'pescatarian'],
   },
-  peaches: {
+  {
+    name: 'peach',
     category: 'fruits',
-    tags: ['vegan', 'vegetarian'],
+    tags: ['vegan', 'vegetarian', 'pescatarian'],
   },
-  chicken: {
+  { name: 'chicken', category: 'proteins', tags: [] },
+  { name: 'steak', category: 'proteins', tags: [] },
+  { name: 'ham', category: 'proteins', tags: [] },
+  { name: 'egg', category: 'proteins', tags: ['vegetarian', 'pescatarian'] },
+  {
+    name: 'tofu',
     category: 'proteins',
-    tags: [],
+    tags: ['vegan', 'vegetarian', 'soy', 'pescatarian'],
   },
-  steak: {
+  {
+    name: 'seitan',
     category: 'proteins',
-    tags: [],
+    tags: ['vegan', 'vegetarian', 'pescetarian', 'gluten', 'carbs'],
   },
-  ham: {
+  {
+    name: 'tempeh',
     category: 'proteins',
-    tags: [],
+    tags: ['vegan', 'vegetarian', 'pescetarian', 'soy', 'carbs'],
   },
-  egg: {
-    category: 'proteins',
-    tags: ['vegetarian'],
-  },
-  tofu: {
-    category: 'proteins',
-    tags: ['vegan', 'vegetarian', 'soy'],
-  },
-  shrimp: {
-    category: 'proteins',
-    tags: ['pescatarian'],
-  },
-  tuna: {
-    category: 'proteins',
-    tags: ['pescatarian'],
-  },
-  salmon: {
-    category: 'proteins',
-    tags: ['pescatarian'],
-  },
-  parmesan: {
+  { name: 'shrimp', category: 'proteins', tags: ['pescatarian'] },
+  { name: 'tuna', category: 'proteins', tags: ['pescatarian'] },
+  { name: 'salmon', category: 'proteins', tags: ['pescatarian'] },
+  {
+    name: 'parmesan',
     category: 'cheeses',
-    tags: ['vegetarian', 'dairy'],
+    tags: ['vegetarian', 'dairy', 'pescatarian'],
   },
-  cheddar: {
+  {
+    name: 'cheddar',
     category: 'cheeses',
-    tags: ['vegetarian', 'dairy'],
+    tags: ['vegetarian', 'dairy', 'pescatarian'],
   },
-  swiss: {
+  {
+    name: 'swiss',
     category: 'cheeses',
-    tags: ['vegetarian', 'dairy'],
+    tags: ['vegetarian', 'dairy', 'pescatarian'],
   },
-  goat: {
+  {
+    name: 'goat',
     category: 'cheeses',
-    tags: ['vegetarian', 'dairy'],
+    tags: ['vegetarian', 'dairy', 'pescatarian'],
   },
-  feta: {
+  {
+    name: 'feta',
     category: 'cheeses',
-    tags: ['vegetarian', 'dairy'],
+    tags: ['vegetarian', 'dairy', 'pescatarian'],
   },
-  bleu: {
+  {
+    name: 'bleu',
     category: 'cheeses',
-    tags: ['vegetarian', 'dairy'],
+    tags: ['vegetarian', 'dairy', 'pescatarian'],
   },
-  almond: {
+  {
+    name: 'almond',
     category: 'garnishes',
-    tags: ['nuts', 'vegan', 'vegetarian'],
+    tags: ['nuts', 'vegan', 'vegetarian', 'pescatarian'],
   },
-  walnut: {
+  {
+    name: 'walnut',
     category: 'garnishes',
-    tags: ['nuts', 'vegan', 'vegetarian'],
+    tags: ['nuts', 'vegan', 'vegetarian', 'pescatarian'],
   },
-  pecan: {
+  {
+    name: 'pecan',
     category: 'garnishes',
-    tags: ['nuts', 'vegan', 'vegetarian'],
+    tags: ['nuts', 'vegan', 'vegetarian', 'pescatarian'],
   },
-  'sesame seed': {
+  {
+    name: 'sesame seed',
     category: 'garnishes',
-    tags: ['vegan', 'vegetarian'],
+    tags: ['vegan', 'vegetarian', 'pescatarian'],
   },
-  crouton: {
+  {
+    name: 'crouton',
     category: 'garnishes',
-    tags: ['vegan', 'vegetarian', 'gluten'],
+    tags: ['vegan', 'vegetarian', 'gluten', 'pescatarian', 'carbs'],
   },
-  bacon: {
+  { name: 'bacon', category: 'garnishes', tags: [] },
+  {
+    name: 'pine nut',
     category: 'garnishes',
-    tags: [],
+    tags: ['nuts', 'vegan', 'vegetarian', 'pescatarian'],
   },
-  'pine nut': {
+  {
+    name: 'cashew',
     category: 'garnishes',
-    tags: ['nuts', 'vegan', 'vegetarian'],
+    tags: ['nuts', 'vegan', 'vegetarian', 'pescatarian'],
   },
-  cashew: {
+  {
+    name: 'peanut',
     category: 'garnishes',
-    tags: ['nuts', 'vegan', 'vegetarian'],
+    tags: ['nuts', 'vegan', 'vegetarian', 'pescatarian'],
   },
-  peanut: {
-    category: 'garnishes',
-    tags: ['nuts', 'vegan', 'vegetarian'],
-  },
-};
+];
 
 type MetaInfo = {
   [key: string]: {
@@ -220,16 +251,13 @@ type MetaInfo = {
 };
 
 const getIngredientInfo = () => {
-  const keys: string[] = Object.keys(ingredients);
   const metaInfo: MetaInfo = {};
 
-  keys.forEach((key) => {
-    const currentIngredient = ingredients[key];
-    const currentCategory = currentIngredient.category;
-    if (!metaInfo.hasOwnProperty(currentCategory))
-      metaInfo[currentCategory] = { amount: 0 };
+  ingredients.forEach((ingredient) => {
+    const { category } = ingredient;
+    if (!metaInfo.hasOwnProperty(category)) metaInfo[category] = { amount: 0 };
 
-    metaInfo[currentCategory].amount += 1;
+    metaInfo[category].amount += 1;
   });
 
   return metaInfo;

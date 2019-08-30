@@ -28,46 +28,46 @@ const useStyles = makeStyles((theme: Theme) =>
 const SettingsDrawer: React.FC = () => {
   const classes = useStyles();
 
-  const [saladSettings, setSaladSettings] = useState<IUserOptions>(
+  const [ingredientSettings, setIngredientSettings] = useState<IUserOptions>(
     defaultSettings,
   );
-  const stringifiedSettings = JSON.stringify(saladSettings);
+  const stringifiedIngredientSettings = JSON.stringify(ingredientSettings);
 
-  const getSaladSettings = () =>
-    settings.getSettings().then((response) => {
-      setSaladSettings(response);
+  const getIngredientSettings = () =>
+    settings.ingredientSettings.getIngredientSettings().then((response) => {
+      setIngredientSettings(response as IUserOptions);
     });
 
-  const saveSaladSettings = (data: IUserOptions = saladSettings) =>
-    settings.saveSettings(data);
+  const saveIngredientSettings = (data: IUserOptions = ingredientSettings) =>
+    settings.ingredientSettings.saveIngredientSettings(data);
 
   useEffect(() => {
-    getSaladSettings();
-  }, [stringifiedSettings]);
+    getIngredientSettings();
+  }, [stringifiedIngredientSettings]);
 
   const onSwitchChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const { checked, value } = event.currentTarget;
-    const settingsCopy = JSON.parse(stringifiedSettings);
+    const settingsCopy = JSON.parse(stringifiedIngredientSettings);
 
     settingsCopy[value].enabled = checked;
 
-    setSaladSettings(settingsCopy);
-    saveSaladSettings(settingsCopy);
+    setIngredientSettings(settingsCopy);
+    saveIngredientSettings(settingsCopy);
   };
 
   const onSliderChange = async (type: string, value: number | number[]) => {
-    const settingsCopy = JSON.parse(stringifiedSettings);
+    const settingsCopy = JSON.parse(stringifiedIngredientSettings);
 
     settingsCopy[type].amount = value;
 
-    setSaladSettings(settingsCopy);
-    saveSaladSettings(settingsCopy);
+    setIngredientSettings(settingsCopy);
+    saveIngredientSettings(settingsCopy);
   };
 
   return (
     <ReusableDrawer
       icon={<SettingsIcon className={classes.iconLeft} />}
-      label="Settings"
+      label="Ingredients"
     >
       <List
         className={classes.list}
@@ -78,20 +78,20 @@ const SettingsDrawer: React.FC = () => {
         }
       >
         <Divider />
-        {saladSettings &&
-          Object.keys(saladSettings).map((key) => (
+        {ingredientSettings &&
+          Object.keys(ingredientSettings).map((key) => (
             <Fragment key={`settings-fragment-${key}`}>
               <SettingsSwitch
                 value={key}
                 onChange={onSwitchChange}
-                settings={saladSettings[key]}
+                settings={ingredientSettings[key]}
               >
-                {`${key} (${saladSettings[key].amount})`}
+                {`${key} (${ingredientSettings[key].amount})`}
               </SettingsSwitch>
               <SettingsSlider
                 onChange={onSliderChange}
                 type={key}
-                settings={saladSettings[key]}
+                settings={ingredientSettings[key]}
               />
               <Divider />
             </Fragment>

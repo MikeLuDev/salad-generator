@@ -1,9 +1,15 @@
 import { dbRequest, SETTINGS_OBJECT_STORE } from './db';
 
-const settings = {
-  getSettings: async () => {
+const SETTINGS_KEY = 'userSettingsKey';
+const DIETARY_KEY = 'userDietaryKey';
+
+const ingredientSettings = {
+  getIngredientSettings: async () => {
     return new Promise<IUserOptions>((resolve, reject) => {
-      const settingsRequest = dbRequest.get(SETTINGS_OBJECT_STORE, 1);
+      const settingsRequest = dbRequest.get(
+        SETTINGS_OBJECT_STORE,
+        SETTINGS_KEY,
+      );
 
       settingsRequest.onsuccess = (event) => {
         const { result } = event.target as IDBRequest;
@@ -18,11 +24,11 @@ const settings = {
     });
   },
 
-  saveSettings: async (settings: IUserOptions) => {
+  saveIngredientSettings: async (settings: IUserOptions) => {
     return new Promise<IUserOptions>((resolve, reject) => {
       const settingsRequest = dbRequest.update(
         SETTINGS_OBJECT_STORE,
-        1,
+        SETTINGS_KEY,
         settings,
       );
 
@@ -40,4 +46,46 @@ const settings = {
   },
 };
 
-export default settings;
+const dietarySettings = {
+  getDietarySettings: async () => {
+    return new Promise<IDietaryOptions>((resolve, reject) => {
+      const settingsRequest = dbRequest.get(SETTINGS_OBJECT_STORE, DIETARY_KEY);
+
+      settingsRequest.onsuccess = (event) => {
+        const { result } = event.target as IDBRequest;
+
+        resolve(result);
+      };
+
+      settingsRequest.onerror = () => {
+        alert(`Error getting user settings.`);
+        reject();
+      };
+    });
+  },
+
+  saveDietarySettings: async (settings: IDietaryOptions) => {
+    return new Promise<IDietaryOptions>((resolve, reject) => {
+      const settingsRequest = dbRequest.update(
+        SETTINGS_OBJECT_STORE,
+        DIETARY_KEY,
+        settings,
+      );
+
+      settingsRequest.onsuccess = (event) => {
+        const { result } = event.target as IDBRequest;
+
+        resolve(result);
+      };
+
+      settingsRequest.onerror = () => {
+        alert(`Error saving user settings.`);
+        reject();
+      };
+    });
+  },
+};
+
+const settings = { ingredientSettings, dietarySettings };
+
+export { settings as default, SETTINGS_KEY, DIETARY_KEY };

@@ -8,13 +8,12 @@ const categories =
   'garnishes';
 
 interface ISingleIngredient {
+  name: string;
   category: categories;
   tags: string[];
 }
 
-interface IIngredients {
-  [ingredientName: string]: ISingleIngredient;
-}
+interface IIngredients extends Array<ISingleIngredient> {}
 
 interface ISalad {
   [propName: string]: string[] | undefined;
@@ -27,4 +26,13 @@ interface ISingleOption {
 
 interface IUserOptions {
   [propName: string]: ISingleOption;
+}
+
+interface IDietaryOptions {
+  diet: 'vegan' | 'vegetarian' | 'pescatarian' | 'none';
+  lowCarb: boolean;
+  dairyFree: boolean;
+  soyFree: boolean;
+  glutenFree: boolean;
+  nutFree: boolean;
 }

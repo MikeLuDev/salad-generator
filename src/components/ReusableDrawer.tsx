@@ -9,7 +9,12 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     closeButtonContainer: {
       textAlign: 'center',
-      margin: theme.spacing(1),
+      padding: theme.spacing(2, 0, 3, 0),
+      width: '300px',
+    },
+    infoText: {
+      marginBottom: theme.spacing(2),
+      padding: theme.spacing(0, 2, 0, 2),
     },
   }),
 );
@@ -53,7 +58,7 @@ const ReusableDrawer: React.FC<Props> = ({ children, label, icon }) => {
       <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
         {children}
         <Box className={classes.closeButtonContainer}>
-          <Typography style={{ marginBottom: '16px' }} variant="body1">
+          <Typography className={classes.infoText} variant="body1">
             All settings are saved automatically
           </Typography>
           <Button
