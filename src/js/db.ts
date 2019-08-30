@@ -8,11 +8,15 @@ const DB_NAME = 'saladAppDatabase';
 const SETTINGS_OBJECT_STORE = 'settings';
 let db: IDBDatabase;
 
+type Settings = {
+  [propName: string]: IUserOptions | IDietaryOptions;
+};
+
 const verifyUserSettingsExists = (store: string, key: string | number) => {
   const userSettings = dbRequest.getAll(store);
-  const settingsOptions: IUserOptions | IDietaryOptions = {
-    [SETTINGS_KEY]: saladDefaultSettings,
-    [DIETARY_KEY]: dietaryDefaultSettings,
+  const settingsOptions: Settings = {
+    [SETTINGS_KEY]: saladDefaultSettings as IUserOptions,
+    [DIETARY_KEY]: dietaryDefaultSettings as IDietaryOptions,
   };
 
   userSettings.onsuccess = () => {

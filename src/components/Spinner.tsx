@@ -18,6 +18,7 @@ import RefreshIcon from '@material-ui/icons/Refresh';
 import spinSalad from '../js/spinSalad';
 import SettingsDrawer from './SettingsDrawer';
 import util from '../js/util';
+import DietaryDrawer from './DietaryDrawer';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -50,6 +51,7 @@ const Spinner: React.FC = () => {
   return (
     <Box className={classes.root}>
       <SettingsDrawer />
+      <DietaryDrawer />
       <Button
         className={classes.button}
         onClick={getSalad}

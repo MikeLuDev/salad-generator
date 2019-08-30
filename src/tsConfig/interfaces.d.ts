@@ -30,5 +30,9 @@ interface IUserOptions {
 }
 
 interface IDietaryOptions {
-  [key: string]: bool;
+  diet: 'vegan' | 'vegetarian' | 'pescatarian' | 'none';
+  lowCarb: boolean;
+  dairyFree: boolean;
+  soyFree: boolean;
+  glutenFree: boolean;
 }

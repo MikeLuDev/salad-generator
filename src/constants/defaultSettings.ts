@@ -30,9 +30,7 @@ const saladDefaultSettings: IUserOptions = {
 };
 
 const dietaryDefaultSettings: IDietaryOptions = {
-  vegan: false,
-  vegetarian: false,
-  pescetarian: false,
+  diet: 'none',
   lowCarb: false,
   dairyFree: false,
   soyFree: false,
