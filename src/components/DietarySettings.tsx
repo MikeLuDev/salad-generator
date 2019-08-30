@@ -72,8 +72,6 @@ const DietaryBoxes: React.FC = () => {
 
     settingsCopy[value] = checked;
 
-    console.log(settingsCopy);
-
     setDietarySettings(settingsCopy);
     saveDietarySettings(settingsCopy);
   };

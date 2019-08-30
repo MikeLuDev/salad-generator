@@ -75,4 +75,4 @@ const dbRequest = {
     dbRequest.getObjectStore(store, 'readwrite').put(data, key),
 };
 
-export { indexedDatabase as default, dbRequest, SETTINGS_OBJECT_STORE };
+export { indexedDatabase as default, dbRequest, SETTINGS_OBJECT_STORE, db };

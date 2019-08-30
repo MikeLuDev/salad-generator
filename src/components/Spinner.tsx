@@ -43,10 +43,7 @@ const Spinner: React.FC = () => {
   const classes = useStyles();
   const [salad, setSalad] = useState<ISalad | null>(null);
 
-  const getSalad = async () => {
-    const newSalad = await spinSalad();
-    setSalad(newSalad);
-  };
+  const getSalad = async () => setSalad(await spinSalad());
 
   return (
     <Box className={classes.root}>
