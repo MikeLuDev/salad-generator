@@ -7,11 +7,10 @@ const { getRandomInt } = util;
 const pickRandomIngredients = (category: string, count: number) => {
   const pickedIndexes: number[] = [];
   const pickedIngredientKeys: string[] = [];
-  const ingredientKeys: string[] = Object.keys(saladIngredients);
-  const ingredients: string[] = ingredientKeys.filter((key) => {
-    if (saladIngredients[key].category === category) return key;
-    else return null;
-  });
+
+  const ingredients: string[] = saladIngredients
+    .filter((ingredient) => ingredient.category === category)
+    .map((ingredient) => ingredient.name);
 
   if (!ingredients.length) return;
   if (count > ingredients.length) return ingredients;

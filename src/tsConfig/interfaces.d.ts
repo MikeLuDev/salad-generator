@@ -8,13 +8,12 @@ const categories =
   'garnishes';
 
 interface ISingleIngredient {
+  name: string;
   category: categories;
   tags: string[];
 }
 
-interface IIngredients {
-  [ingredientName: string]: ISingleIngredient;
-}
+interface IIngredients extends Array<ISingleIngredient> {}
 
 interface ISalad {
   [propName: string]: string[] | undefined;
