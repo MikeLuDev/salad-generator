@@ -53,7 +53,14 @@ const DietaryBoxes: React.FC = () => {
   const stringifiedDefaultDietarySettings = JSON.stringify(
     dietaryDefaultSettings,
   );
-  const { diet, dairyFree, glutenFree, lowCarb, soyFree } = dietarySettings;
+  const {
+    diet,
+    dairyFree,
+    glutenFree,
+    lowCarb,
+    soyFree,
+    nutFree,
+  } = dietarySettings;
 
   const getDietarySettings = () =>
     settings.dietarySettings.getDietarySettings().then((response) => {
@@ -163,6 +170,16 @@ const DietaryBoxes: React.FC = () => {
               />
             }
             label="Gluten Free"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={nutFree}
+                onChange={handleCheckboxChange}
+                value="nutFree"
+              />
+            }
+            label="Nut Free"
           />
         </FormGroup>
       </FormControl>

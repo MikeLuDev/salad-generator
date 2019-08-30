@@ -34,4 +34,5 @@ interface IDietaryOptions {
   dairyFree: boolean;
   soyFree: boolean;
   glutenFree: boolean;
+  nutFree: boolean;
 }

@@ -35,6 +35,7 @@ const dietaryDefaultSettings: IDietaryOptions = {
   dairyFree: false,
   soyFree: false,
   glutenFree: false,
+  nutFree: false,
 };
 
 export { saladDefaultSettings as default, dietaryDefaultSettings };

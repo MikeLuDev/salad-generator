@@ -34,7 +34,14 @@ const pickRandomIngredients = (
 
 const filterIngredientsByDiet = async () => {
   const dietarySettings = await settings.dietarySettings.getDietarySettings();
-  const { diet, lowCarb, dairyFree, soyFree, glutenFree } = dietarySettings;
+  const {
+    diet,
+    lowCarb,
+    dairyFree,
+    soyFree,
+    glutenFree,
+    nutFree,
+  } = dietarySettings;
   let ingredients = saladIngredients;
 
   const filterByTag = (tag: string, includes: boolean = true) => {
@@ -48,6 +55,7 @@ const filterIngredientsByDiet = async () => {
   if (dairyFree) filterByTag('soy', false);
   if (soyFree) filterByTag('soy', false);
   if (glutenFree) filterByTag('gluten', false);
+  if (nutFree) filterByTag('nuts', false);
 
   return ingredients;
 };
