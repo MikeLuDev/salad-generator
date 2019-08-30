@@ -18,8 +18,10 @@ import settings from '../js/settings';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      width: '100%',
       padding: theme.spacing(2),
+    },
+    formControl: {
+      width: '100%',
     },
     group: {
       paddingLeft: theme.spacing(2),
@@ -77,8 +79,8 @@ const DietaryBoxes: React.FC = () => {
   };
 
   return (
-    <Box>
-      <FormControl component="fieldset" className={classes.root}>
+    <Box className={classes.root}>
+      <FormControl component="fieldset" className={classes.formControl}>
         <FormLabel className={classes.label} component="legend">
           Dietary Restrictions
         </FormLabel>
