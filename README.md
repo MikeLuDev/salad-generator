@@ -56,6 +56,26 @@ Contributions are welcome!
 
 Please create an issue before contributing to this project. Features should be worked on in separate branches and pull requests should be made for every proposed change.
 
+## Docker
+To run locally build the image, from root directory
+```
+docker build -t salad .
+```
+
+Run the container
+```
+docker run \
+    -it \
+    --rm \
+    -v ${PWD}:/app \
+    -v /app/node_modules \
+    -p 3001:3000 \
+    -e CHOKIDAR_USEPOLLING=true \
+    salad
+```
+
+Navigate to the url provided
+
 ## About
 
 Built and maintained by Michael Lu
